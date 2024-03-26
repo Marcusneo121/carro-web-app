@@ -37,7 +37,7 @@ const NavBar = () => {
               />
             </div>
             <h1 className="visible pt-2 text-[45px] font-bold leading-none text-white max-xl:hidden">
-              TREVO
+              CARRO
             </h1>
           </div>
 
@@ -79,7 +79,7 @@ const NavBar = () => {
               <Button
                 asChild
                 variant="outline"
-                className="hover:text-brandprimary rounded-full border-2 bg-transparent px-10 py-6 text-lg font-bold text-white"
+                className="rounded-full border-2 bg-transparent px-10 py-6 text-lg font-bold text-white hover:text-brandprimary"
               >
                 <Link href="/login">LOGIN</Link>
               </Button>
@@ -114,7 +114,7 @@ const NavBar = () => {
         leaveTo="opacity-0"
       >
         <div
-          className={`bg-brandprimary absolute z-10 flex h-full w-full items-start justify-center pt-20`}
+          className={`absolute z-10 flex h-full w-full items-start justify-center bg-brandprimary pt-20`}
           //   className={`absolute z-10 flex h-full w-full min-w-96 items-start justify-center bg-gray-300 pt-10`}
         >
           <div className={`flex flex-col items-center gap-10`}>
@@ -137,7 +137,7 @@ const NavBar = () => {
               <Button
                 asChild
                 variant="outline"
-                className="hover:text-brandprimary rounded-full border-2 bg-transparent px-6 py-6 text-base font-bold text-white"
+                className="rounded-full border-2 bg-transparent px-6 py-6 text-base font-bold text-white hover:text-brandprimary"
               >
                 <Link href="/login">LOGIN</Link>
               </Button>

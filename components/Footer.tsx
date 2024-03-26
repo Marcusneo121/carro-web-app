@@ -13,8 +13,8 @@ const Footer = () => {
               height={20}
               objectFit="cover"
             />
-            <h1 className="text-brandprimary visible pt-2 text-[35px] font-bold leading-none max-xl:hidden">
-              TREVO
+            <h1 className="visible pt-2 text-[35px] font-bold leading-none text-brandprimary max-xl:hidden">
+              CARRO
             </h1>
           </div>
           <p className="max-w-[350px] text-sm">
@@ -24,7 +24,7 @@ const Footer = () => {
           </p>
         </div>
       </div>
-      <div className="bg-brandprimary flex justify-center py-3 font-bold text-white">
+      <div className="flex justify-center bg-brandprimary py-3 font-bold text-white">
         From Malaysia with Innovation, Passion & ❤️️
       </div>
     </div>

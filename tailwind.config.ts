@@ -28,6 +28,8 @@ const config = {
         bigtextbrandcolor: "#4A4A4A",
         smalltextbrandcolor: "#858585",
         greyishbackground: "#F7F7F7",
+        specialyellow: "#FFEB3A",
+        specialyellowhover: "#FFF176",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",

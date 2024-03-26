@@ -9,3 +9,10 @@ export interface MainDivProps {
   className: string;
 }
 
+export interface DialogAuthProps {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+}
+
+
+
