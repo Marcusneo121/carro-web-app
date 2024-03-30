@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Nunito as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "@/app/globals.css";
-import AuthPageHeader from "./login/components/AuthPageHeader";
+
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
@@ -17,12 +17,8 @@ export default function Layout({
 }>) {
   return (
     <div
-      className={cn(
-        "h-screen bg-brandprimary font-sans antialiased",
-        fontSans.variable,
-      )}
+      className={cn("bg-brandprimary font-sans antialiased", fontSans.variable)}
     >
-      <AuthPageHeader />
       {children}
     </div>
   );

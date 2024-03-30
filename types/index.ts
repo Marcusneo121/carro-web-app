@@ -12,7 +12,21 @@ export interface MainDivProps {
 export interface DialogAuthProps {
   open: boolean;
   setOpen: (open: boolean) => void;
+  
 }
+
+export interface DynamicAlertDialogProps {
+  open: boolean;
+  setOpen: (open: boolean) => void;
+  message: string;
+  title: string;
+}
+
+export interface DatePickerProps {
+  date: Date | undefined;
+  setDate: (day: Date | undefined) => void;
+}
+
 
 
 

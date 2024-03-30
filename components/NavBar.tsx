@@ -7,12 +7,26 @@ import { MdOutlineClose } from "react-icons/md";
 import { HiMenuAlt3 } from "react-icons/hi";
 import { useState } from "react";
 import { Transition } from "@headlessui/react";
+import Cookies from "js-cookie";
 
 const NavBar = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
+  const getTokenCookies = Cookies.get("JWT_TOKEN");
+  const getLoginDataCookies = Cookies.get("USER_LOGIN_DATA");
 
   const handleMobileNavOpen = () => {
     setIsMobileNavOpen(!isMobileNavOpen);
+  };
+
+  const checkCookieLogin = (): boolean => {
+    const getTokenCookies = Cookies.get("JWT_TOKEN");
+    const getLoginDataCookies = Cookies.get("USER_LOGIN_DATA");
+
+    if (getTokenCookies === undefined || getLoginDataCookies === undefined) {
+      return true;
+    } else {
+      return false;
+    }
   };
 
   return (
@@ -133,15 +147,22 @@ const NavBar = () => {
                 ABOUT US
               </h1>
             </Link>
-            <div>
-              <Button
-                asChild
-                variant="outline"
-                className="rounded-full border-2 bg-transparent px-6 py-6 text-base font-bold text-white hover:text-brandprimary"
-              >
-                <Link href="/login">LOGIN</Link>
-              </Button>
-            </div>
+
+            {getLoginDataCookies === undefined &&
+            getTokenCookies === undefined ? (
+              <div>
+                <Button
+                  asChild
+                  variant="outline"
+                  className="rounded-full border-2 bg-transparent px-6 py-6 text-base font-bold text-white hover:text-brandprimary"
+                  onClick={handleMobileNavOpen}
+                >
+                  <Link href="/login">LOGIN</Link>
+                </Button>
+              </div>
+            ) : (
+              <></>
+            )}
           </div>
         </div>
       </Transition>

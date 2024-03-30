@@ -3,6 +3,31 @@ export interface ILoginProps {
   password: string;
 }
 
+export interface IEmailUsernameCheckProps {
+  status: string;
+  message: boolean;
+}
+
+
+export interface ISignUpProps {
+  isAdmin: boolean;
+  username: string;
+  email: string;
+  password: string;
+  firstName: string;
+  lastName: string;
+  address1: string;
+  address2: string;
+  address3: string;
+  poscode: number;
+  city: string;
+  state: string;
+  age: number;
+  phoneNumber: number;
+  dateOfBirth: Date;
+  profileImage: string;
+}
+
 //Login Data Return Start
 export interface ILoginJWTData {
   data: Data;
