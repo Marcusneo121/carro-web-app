@@ -8,6 +8,10 @@ export interface IEmailUsernameCheckProps {
   message: boolean;
 }
 
+export interface IRegisterProps {
+  status: string;
+  message: string;
+}
 
 export interface ISignUpProps {
   isAdmin: boolean;
@@ -32,6 +36,7 @@ export interface ISignUpProps {
 export interface ILoginJWTData {
   data: Data;
   token: Token;
+  status?: string;
   message: string;
 }
 

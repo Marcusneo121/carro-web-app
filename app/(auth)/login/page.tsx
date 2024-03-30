@@ -15,6 +15,7 @@ import Link from "next/link";
 import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import AuthPageHeader from "../components/AuthPageHeader";
+import { DynamicAlertDialog } from "../components/DynamicAlertDialog";
 
 const Login = () => {
   // const [formData, setFormData] = useState({
@@ -39,6 +40,21 @@ const Login = () => {
   const [loginData, setloginData] = useState<ILoginJWTData>();
   const currentDate: Date = new Date();
 
+  const [openErrorDynamicDialog, setOpenErrorDynamicDialog] =
+    useState<boolean>(false);
+  const [dialogErrorMessage, setDialogErrorMessage] = useState<string>("");
+  const [dialogErrorTitle, setDialogErrorTitle] = useState<string>("");
+
+  const dynamicErrorDialogSetter = (
+    dialogTitle: string,
+    dialogMessage: string,
+    openDialog: boolean,
+  ) => {
+    setDialogErrorMessage(dialogMessage);
+    setDialogErrorTitle(dialogTitle);
+    setOpenErrorDynamicDialog(openDialog);
+  };
+
   const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
     event.preventDefault();
     setOpenSpinner(true);
@@ -48,15 +64,32 @@ const Login = () => {
         password: password.toString(),
       });
 
-      currentDate.getUTCFullYear().toLocaleString();
-
-      const testing = Cookies.get("JWT_TOKEN");
-
-      if (testing !== undefined) {
-        setOpenSpinner(false);
+      setOpenSpinner(false);
+      if (loginData.status === "ok") {
+        console.log("come in ok");
         router.push("/");
+      } else if (loginData.status === "error") {
+        console.log("come in error");
+        dynamicErrorDialogSetter(
+          "Login failed",
+          loginData.message.toString(),
+          true,
+        );
+      } else {
+        console.log("come in error else");
+        dynamicErrorDialogSetter(
+          "Login failed",
+          "Something went wrong. Please try again.",
+          true,
+        );
       }
 
+      // currentDate.getUTCFullYear().toLocaleString();
+      // const checkToken = Cookies.get("JWT_TOKEN");
+      // if (checkToken !== undefined) {
+      //   setOpenSpinner(false);
+      //   router.push("/");
+      // }
       // alert(JSON.stringify(loginData));
     } catch (error) {
       // alert(error);
@@ -152,7 +185,13 @@ const Login = () => {
                     LOGIN
                   </Button>
                   <LoadingDialog open={openSpinner} setOpen={setOpenSpinner} />
-                  <AlertAuthDialog open={openDialog} setOpen={setOpenDialog} />
+                  {/* <AlertAuthDialog open={openDialog} setOpen={setOpenDialog} /> */}
+                  <DynamicAlertDialog
+                    open={openErrorDynamicDialog}
+                    setOpen={setOpenErrorDynamicDialog}
+                    message={dialogErrorMessage}
+                    title={dialogErrorTitle}
+                  />
                   <div className="mt-2 flex flex-col items-center justify-center">
                     <h3 className="text-sm font-bold">Don't have an account</h3>
                     <Button

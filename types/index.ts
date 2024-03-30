@@ -27,6 +27,10 @@ export interface DatePickerProps {
   setDate: (day: Date | undefined) => void;
 }
 
+export interface RegisterDataUIProps {
+  status: string;
+  message: string;
+}
 
 
 

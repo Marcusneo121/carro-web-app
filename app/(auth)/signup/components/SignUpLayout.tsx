@@ -7,13 +7,18 @@ import { Separator } from "@/components/ui/separator";
 import { FiEye, FiEyeOff } from "react-icons/fi";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { IEmailUsernameCheckProps, ISignUpProps } from "@/types/api_index";
-import { checkEmail, checkUsername } from "@/services/auth";
+import {
+  IEmailUsernameCheckProps,
+  IRegisterProps,
+  ISignUpProps,
+} from "@/types/api_index";
+import { checkEmail, checkUsername, userRegister } from "@/services/auth";
 import debounce from "lodash.debounce";
 import { LoadingDialog } from "../../components/LoadingDialog";
 import { DynamicAlertDialog } from "../../components/DynamicAlertDialog";
 import { DynamicDialogMessages } from "../../components/DynamicDialogMessage";
 import { ageFromDateOfBirthday } from "@/utils/utils";
+import { RegisterDataUIProps } from "@/types";
 
 const regexUsernamePassword: RegExp = new RegExp(
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,
@@ -142,7 +147,7 @@ const SignUpLayout = () => {
           true,
         );
       } else {
-        signUp({
+        const signUpProcess: RegisterDataUIProps = await signUp({
           isAdmin: false,
           username: data.username,
           email: data.email,
@@ -157,17 +162,25 @@ const SignUpLayout = () => {
           state: data.state,
           age: ageFromDateOfBirthday(data.dateofbirth),
           phoneNumber: data.phonenumber,
-          dateOfBirth: new Date(),
+          dateOfBirth: new Date(data.dateofbirth),
           profileImage: "-",
         });
-
-        //when successful then ok
         setOpenSpinner(false);
-        dynamicSuccessDialogSetter(
-          "Account successfully registered",
-          `Account registered. Email verification had sent to ${data.email.toString()}`,
-          true,
-        );
+        if (signUpProcess.status === "ok") {
+          dynamicSuccessDialogSetter(
+            "Account successfully registered",
+            `Account registered. Email verification had sent to ${data.email.toString()}.`,
+            true,
+          );
+        } else if (signUpProcess.status === "error") {
+          dynamicDialogSetter("Error", signUpProcess.status, true);
+        } else {
+          dynamicDialogSetter(
+            "Error",
+            "Something went wrong. Please try again",
+            true,
+          );
+        }
       }
     } catch (error) {
       setOpenSpinner(false);
@@ -240,8 +253,13 @@ const SignUpLayout = () => {
     }
   }
 
-  async function signUp(data: ISignUpProps) {
-    console.log(data);
+  async function signUp(data: ISignUpProps): Promise<RegisterDataUIProps> {
+    const signUpData: IRegisterProps = await userRegister(data);
+
+    return {
+      status: signUpData.status,
+      message: signUpData.message,
+    };
   }
 
   return (
