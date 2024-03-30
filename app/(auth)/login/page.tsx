@@ -64,6 +64,8 @@ const Login = () => {
         password: password.toString(),
       });
 
+      console.log(loginData);
+
       setOpenSpinner(false);
       if (loginData.status === "ok") {
         console.log("come in ok");

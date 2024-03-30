@@ -25,7 +25,7 @@ export function DynamicAlertDialog({
         <div className="gap flex flex-col items-center">
           <div className="text-2xl font-bold">{title}</div>
           <div className="my-10 flex flex-col items-center text-center">
-            <PiWarningCircle className="text-[100px] text-red-500" />
+            <PiWarningCircle className="animate-pulse text-[100px] text-red-500" />
             <p className="mx-2 mt-6 text-lg font-medium">{message}</p>
           </div>
         </div>

@@ -93,11 +93,23 @@ const NavBar = () => {
               <Button
                 asChild
                 variant="outline"
-                className="rounded-full border-2 bg-transparent px-10 py-6 text-lg font-bold text-white hover:text-brandprimary"
+                className="rounded-full border-2 bg-transparent px-10 py-6 text-lg font-bold text-white hover:text-brandprimary "
               >
                 <Link href="/login">LOGIN</Link>
               </Button>
             </div>
+            {/* {getLoginDataCookies === undefined &&
+            getTokenCookies === undefined ? (
+              <Button
+                asChild
+                variant="outline"
+                className="rounded-full border-2 bg-transparent px-10 py-6 text-lg font-bold text-white hover:text-brandprimary"
+              >
+                <Link href="/login">LOGIN</Link>
+              </Button>
+            ) : (
+              <></>
+            )} */}
           </div>
 
           <div className="visible lg:hidden">
