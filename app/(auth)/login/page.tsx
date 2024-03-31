@@ -16,6 +16,7 @@ import { FiEye } from "react-icons/fi";
 import { FiEyeOff } from "react-icons/fi";
 import AuthPageHeader from "../components/AuthPageHeader";
 import { DynamicAlertDialog } from "../components/DynamicAlertDialog";
+import { getCookie, setCookie, hasCookie, deleteCookie } from "cookies-next";
 
 const Login = () => {
   // const [formData, setFormData] = useState({
@@ -64,11 +65,10 @@ const Login = () => {
         password: password.toString(),
       });
 
-      console.log(loginData);
+      // console.log(loginData);
 
       setOpenSpinner(false);
       if (loginData.status === "ok") {
-        console.log("come in ok");
         router.push("/");
       } else if (loginData.status === "error") {
         console.log("come in error");

@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  image: {
-    domains: ["images.unsplash.com"],
-  },
   images: {
     remotePatterns: [
       {

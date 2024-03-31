@@ -40,6 +40,12 @@ export interface ILoginJWTData {
   message: string;
 }
 
+
+export interface ILogoutProps {
+  revoked: boolean;
+  message: string;
+}
+
 export interface Data {
   user: User;
   profile: Profile;

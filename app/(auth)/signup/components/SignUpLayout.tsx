@@ -190,18 +190,10 @@ const SignUpLayout = () => {
         true,
       );
     }
-    // try {
-    //   const testing = await new Promise((resolve) => setTimeout(resolve, 2000));
-    //   if (data.username === "abcde") {
-    //     setError("username", { message: "This username already taken." });
-    //     throw new Error();
-    //   } else {
-    //     console.log(data);
-    //     console.log(new Date(data.dateofbirth).toISOString());
-    //   }
-    // } catch (error) {
+
     //   setError("root", { message: "Something went wrong, please try again." });
-    // }
+    //   setError("username", { message: "This username already taken." });
+    //   const testing = await new Promise((resolve) => setTimeout(resolve, 2000));
   };
 
   const debounceCheckUsername = debounce(

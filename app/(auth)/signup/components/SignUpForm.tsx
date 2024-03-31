@@ -22,7 +22,7 @@ import { checkUsername } from "@/services/auth";
 import { IoCheckmark } from "react-icons/io5";
 import debounce from "lodash.debounce";
 import test from "node:test";
-import useDebouncer from "@/app/hooks/useDebouncer";
+import useDebouncer from "@/hooks/useDebouncer";
 
 const regexUsernamePassword: RegExp = new RegExp(
   /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[^\w\s]).{8,}$/,

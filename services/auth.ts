@@ -4,12 +4,18 @@ import {
   ILoginProps,
   IRegisterProps,
   ISignUpProps,
+  ILogoutProps,
 } from "@/types/api_index";
 import axios from "axios";
 import Cookies from "js-cookie";
+import { getCookie, setCookie, hasCookie, deleteCookie } from "cookies-next";
 
 const baseUrl = process.env.BASE_URL;
 const MAX_AGE = 7;
+const getTokenCookies = Cookies.get("JWT_TOKEN");
+const getLoginDataCookies = Cookies.get("USER_LOGIN_DATA");
+// const getTokenCookies = getCookie("JWT_TOKEN");
+// const getLoginDataCookies = getCookie("USER_LOGIN_DATA");
 
 export const login = async (loginData: ILoginProps): Promise<ILoginJWTData> => {
   try {
@@ -22,13 +28,22 @@ export const login = async (loginData: ILoginProps): Promise<ILoginJWTData> => {
       body: JSON.stringify(loginData),
     });
 
-    // if (!res.ok) {
-    //   throw new Error("Failed to fetch data.");
-    // }
-
     const successData: ILoginJWTData = await res.json();
 
     if (res.ok) {
+      console.log('came into token setting');
+      // setCookie("JWT_TOKEN", successData.token.token.toString(), {
+      //   secure: true,
+      //   httpOnly: true,
+      //   sameSite: "strict",
+      //   expires: new Date(successData.token.expires_at)
+      // });
+      // setCookie("USER_LOGIN_DATA", JSON.stringify(successData), {
+      //   secure: true,
+      //   httpOnly: true,
+      //   sameSite: "strict",
+      //   expires: new Date(successData.token.expires_at),
+      // });
       Cookies.set("JWT_TOKEN", successData.token.token.toString(), {
         secure: true,
         sameSite: "strict",
@@ -39,6 +54,8 @@ export const login = async (loginData: ILoginProps): Promise<ILoginJWTData> => {
         sameSite: "strict",
         expires: MAX_AGE,
       });
+
+      console.log(getTokenCookies)
     }
     return successData;
   } catch (error) {
@@ -103,7 +120,9 @@ export const checkEmail = async (
   }
 };
 
-export const userRegister = async (data: ISignUpProps): Promise<IRegisterProps> => {
+export const userRegister = async (
+  data: ISignUpProps,
+): Promise<IRegisterProps> => {
   try {
     const res = await fetch(`${baseUrl}/register`, {
       cache: "no-store",
@@ -139,37 +158,25 @@ export const userRegister = async (data: ISignUpProps): Promise<IRegisterProps> 
   }
 };
 
-export const logoutUser = async (
-  data: ISignUpProps,
-): Promise<IRegisterProps> => {
+export const logoutUser = async (jwt: string): Promise<ILogoutProps> => {
   try {
-    const res = await fetch(`${baseUrl}/register`, {
+    // await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log(getTokenCookies);
+    const res = await fetch(`${baseUrl}/logout`, {
       cache: "no-store",
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${jwt}`,
       },
-      body: JSON.stringify({
-        isAdmin: false,
-        username: data.username,
-        email: data.email,
-        password: data.password,
-        first_name: data.firstName,
-        last_name: data.lastName,
-        address1: data.address1,
-        address2: data.address2,
-        address3: data.address3,
-        poscode: data.poscode.toString(),
-        city: data.city,
-        state: data.state,
-        age: data.age,
-        phone_number: data.phoneNumber.toString(),
-        date_of_birth: data.dateOfBirth.toISOString(),
-        profile_image: data.profileImage,
-      }),
     });
 
-    const checkingData: IRegisterProps = await res.json();
+    const checkingData: ILogoutProps = await res.json();
+
+    if (res.ok) {
+      deleteCookie("JWT_TOKEN");
+      deleteCookie("USER_LOGIN_DATA");
+    }
 
     return checkingData;
   } catch (error) {
