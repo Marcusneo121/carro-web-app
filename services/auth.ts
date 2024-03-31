@@ -138,3 +138,41 @@ export const userRegister = async (data: ISignUpProps): Promise<IRegisterProps> 
     throw new Error("Something went wrong! Please try again!");
   }
 };
+
+export const logoutUser = async (
+  data: ISignUpProps,
+): Promise<IRegisterProps> => {
+  try {
+    const res = await fetch(`${baseUrl}/register`, {
+      cache: "no-store",
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        isAdmin: false,
+        username: data.username,
+        email: data.email,
+        password: data.password,
+        first_name: data.firstName,
+        last_name: data.lastName,
+        address1: data.address1,
+        address2: data.address2,
+        address3: data.address3,
+        poscode: data.poscode.toString(),
+        city: data.city,
+        state: data.state,
+        age: data.age,
+        phone_number: data.phoneNumber.toString(),
+        date_of_birth: data.dateOfBirth.toISOString(),
+        profile_image: data.profileImage,
+      }),
+    });
+
+    const checkingData: IRegisterProps = await res.json();
+
+    return checkingData;
+  } catch (error) {
+    throw new Error("Something went wrong! Please try again!");
+  }
+};

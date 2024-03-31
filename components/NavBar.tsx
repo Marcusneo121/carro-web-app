@@ -5,29 +5,40 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { MdOutlineClose } from "react-icons/md";
 import { HiMenuAlt3 } from "react-icons/hi";
-import { useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 import { Transition } from "@headlessui/react";
 import Cookies from "js-cookie";
+import { useRouter } from "next/navigation";
+import dynamic from "next/dynamic";
+const LoginButton = dynamic(() => import("./LoginButton"), { ssr: false });
 
 const NavBar = () => {
   const [isMobileNavOpen, setIsMobileNavOpen] = useState(false);
-  const getTokenCookies = Cookies.get("JWT_TOKEN");
-  const getLoginDataCookies = Cookies.get("USER_LOGIN_DATA");
+  // const [tokenCookies, setTokenCookies] = useState<string>();
+  // const [loginDataCookies, setLoginDataCookies] = useState<string>();
+  // const getTokenCookies = Cookies.get("JWT_TOKEN");
+  // const getLoginDataCookies = Cookies.get("USER_LOGIN_DATA");
+  // const router = useRouter();
 
   const handleMobileNavOpen = () => {
     setIsMobileNavOpen(!isMobileNavOpen);
   };
 
-  const checkCookieLogin = (): boolean => {
-    const getTokenCookies = Cookies.get("JWT_TOKEN");
-    const getLoginDataCookies = Cookies.get("USER_LOGIN_DATA");
+  // const checkCookieLogin = (): boolean => {
+  //   const getTokenCookies = Cookies.get("JWT_TOKEN");
+  //   const getLoginDataCookies = Cookies.get("USER_LOGIN_DATA");
+  //   if (getTokenCookies === undefined || getLoginDataCookies === undefined) {
+  //     return true;
+  //   } else {
+  //     return false;
+  //   }
+  // };
 
-    if (getTokenCookies === undefined || getLoginDataCookies === undefined) {
-      return true;
-    } else {
-      return false;
-    }
-  };
+  // useEffect(() => {
+  // for this the UX experience is not good, cuz it stuttering on Loading
+  //   setTokenCookies(Cookies.get("JWT_TOKEN"));
+  //   setLoginDataCookies(Cookies.get("USER_LOGIN_DATA"));
+  // }, []);
 
   return (
     <div className="overflow-hidden">
@@ -89,7 +100,7 @@ const NavBar = () => {
             </div>
 
             {/* Login */}
-            <div>
+            {/* <div>
               <Button
                 asChild
                 variant="outline"
@@ -97,19 +108,31 @@ const NavBar = () => {
               >
                 <Link href="/login">LOGIN</Link>
               </Button>
-            </div>
-            {/* {getLoginDataCookies === undefined &&
-            getTokenCookies === undefined ? (
-              <Button
-                asChild
-                variant="outline"
-                className="rounded-full border-2 bg-transparent px-10 py-6 text-lg font-bold text-white hover:text-brandprimary"
-              >
-                <Link href="/login">LOGIN</Link>
-              </Button>
-            ) : (
-              <></>
-            )} */}
+            </div> */}
+            {/* {loginDataCookies === undefined && tokenCookies === undefined ? (
+                <Button
+                  asChild
+                  variant="outline"
+                  className="rounded-full border-2 bg-transparent px-10 py-6 text-lg font-bold text-white hover:text-brandprimary"
+                  onClick={() => {
+                    router.push("/login");
+                  }}
+                >
+                  <Link href="/login">LOGIN</Link>
+                </Button>
+              ) : (
+                <Link href="/cars">
+                  <h3
+                    className="relative inline cursor-pointer text-lg font-bold text-white before:absolute before:-bottom-1 before:block before:h-[2px] 
+            before:w-full before:origin-bottom-right before:scale-x-0 before:bg-white 
+            before:transition before:duration-300 before:ease-in-out hover:font-extrabold hover:before:origin-bottom-left hover:before:scale-x-100"
+                  >
+                    BROWSE CAR
+                  </h3>
+                </Link>
+              )} */}
+
+            <LoginButton />
           </div>
 
           <div className="visible lg:hidden">
@@ -140,7 +163,7 @@ const NavBar = () => {
         leaveTo="opacity-0"
       >
         <div
-          className={`absolute z-10 flex h-full w-full items-start justify-center bg-brandprimary pt-20`}
+          className={`absolute z-10 flex h-full w-full items-start justify-center bg-brandprimary pt-16`}
           //   className={`absolute z-10 flex h-full w-full min-w-96 items-start justify-center bg-gray-300 pt-10`}
         >
           <div className={`flex flex-col items-center gap-10`}>
@@ -159,9 +182,8 @@ const NavBar = () => {
                 ABOUT US
               </h1>
             </Link>
-
-            {getLoginDataCookies === undefined &&
-            getTokenCookies === undefined ? (
+            <LoginButton />
+            {/* {loginDataCookies === undefined && tokenCookies === undefined ? (
               <div>
                 <Button
                   asChild
@@ -173,8 +195,8 @@ const NavBar = () => {
                 </Button>
               </div>
             ) : (
-              <></>
-            )}
+              <>Logout</>
+            )} */}
           </div>
         </div>
       </Transition>

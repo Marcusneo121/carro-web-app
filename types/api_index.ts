@@ -67,7 +67,7 @@ export interface Profile {
   age: string;
   phone_number: string;
   date_of_birth: string;
-  profile_image: any;
+  profile_image: string;
   created_at: string;
   updated_at: string;
   poscode: string;
