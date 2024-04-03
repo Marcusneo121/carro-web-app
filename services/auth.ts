@@ -44,7 +44,7 @@ export const login = async (loginData: ILoginProps): Promise<ILoginJWTData> => {
       //   sameSite: "strict",
       //   expires: new Date(successData.token.expires_at),
       // });
-      Cookies.set("JWT_TOKEN", successData.token.token.toString(), {
+      Cookies.set("JWT_TOKEN", successData?.token?.token.toString() ?? "", {
         secure: true,
         sameSite: "strict",
         expires: MAX_AGE,
@@ -170,8 +170,9 @@ export const logoutUser = async (jwt: string): Promise<ILogoutProps> => {
         Authorization: `Bearer ${jwt}`,
       },
     });
+    
 
-    const checkingData: ILogoutProps = await res.json();
+    const checkingData: Promise<ILogoutProps> = await res.json();
 
     if (res.ok) {
       deleteCookie("JWT_TOKEN");

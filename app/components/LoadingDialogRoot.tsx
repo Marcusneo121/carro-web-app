@@ -12,11 +12,21 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { DialogAuthProps } from "@/types";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 
-export function LoadingDialog({ open, setOpen }: DialogAuthProps) {
+export function LoadingDialogRoot() {
+  //   const searchParams = useSearchParams();
+  //   const pathname = usePathname();
+  //   const router = useRouter();
+  //   const isOpen = searchParams.has("loading");
+
+  //   const onOpenChange = (isOpen: boolean) => {
+  //     const pathName = isOpen ? `${pathname}?loading` : pathname;
+  //     router.push(pathName);
+  //   };
+
   return (
-    <AlertDialog onOpenChange={setOpen} open={open}>
+    <AlertDialog open={true}>
       <AlertDialogContent className="flex max-w-24 items-center justify-center rounded-2xl">
         <AiOutlineLoading3Quarters className="animate-spin text-[50px] text-brandprimary" />
       </AlertDialogContent>

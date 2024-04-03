@@ -10,6 +10,8 @@ import { Transition } from "@headlessui/react";
 import Cookies from "js-cookie";
 import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
+// import LoginButton from "./LoginButton";
+import NewLoginButton from "./NewLoginButton";
 const LoginButton = dynamic(() => import("./LoginButton"), { ssr: false });
 
 const NavBar = () => {
@@ -132,6 +134,9 @@ const NavBar = () => {
                 </Link>
               )} */}
 
+            {/* <Suspense>
+              <NewLoginButton />
+            </Suspense> */}
             <LoginButton />
           </div>
 
@@ -182,6 +187,9 @@ const NavBar = () => {
                 ABOUT US
               </h1>
             </Link>
+            {/* <Suspense>
+              <NewLoginButton />
+            </Suspense> */}
             <LoginButton />
             {/* {loginDataCookies === undefined && tokenCookies === undefined ? (
               <div>

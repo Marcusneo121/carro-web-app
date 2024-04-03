@@ -1,6 +1,6 @@
 export interface ILoginProps {
-  username: string;
-  password: string;
+  username?: string;
+  password?: string;
 }
 
 export interface IEmailUsernameCheckProps {
@@ -34,8 +34,8 @@ export interface ISignUpProps {
 
 //Login Data Return Start
 export interface ILoginJWTData {
-  data: Data;
-  token: Token;
+  data?: Data;
+  token?: Token;
   status?: string;
   message: string;
 }
@@ -88,3 +88,32 @@ export interface Token {
   expires_at: string;
 }
 //Login Data Return End
+
+
+export interface ICars {
+  data: ICar[];
+  message: string;
+}
+
+export interface ICar {
+  id: number;
+  user_id: number;
+  car_name: string;
+  color: string;
+  engine_capacity: string;
+  year_made: string;
+  seat: string;
+  location: string;
+  car_main_pic: string;
+  car_image_one: string;
+  car_image_two: string;
+  car_image_three: string;
+  car_image_four: string;
+  car_plate: string;
+  price: string;
+  available_to_date: string;
+  available_from_date: string;
+  created_at: string;
+  updated_at: string;
+  is_electric: boolean;
+}

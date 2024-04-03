@@ -2,14 +2,15 @@ import type { Metadata } from "next";
 import { Nunito as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "@/app/globals.css";
-import { CookiesProvider } from "next-client-cookies/server";
+import CarNavBar from "./components/CarNavBar";
+import Footer from "@/components/Footer";
 import { Toaster } from "react-hot-toast";
 
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Carro",
-  description: "Carro Login",
+  description: "Browse car",
 };
 
 export default function Layout({
@@ -18,10 +19,10 @@ export default function Layout({
   children: React.ReactNode;
 }>) {
   return (
-    <div
-      className={cn("bg-brandprimary font-sans antialiased", fontSans.variable)}
-    >
-      <CookiesProvider>{children}</CookiesProvider>
+    <div className={cn("h-screen font-sans antialiased", fontSans.variable)}>
+      <CarNavBar />
+      {children}
+      <Footer />
       <Toaster
         position="bottom-center"
         toastOptions={{

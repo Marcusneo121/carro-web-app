@@ -32,5 +32,14 @@ export interface RegisterDataUIProps {
   message: string;
 }
 
+export interface YellowAuthButtonUIProps {
+  title: string;
+}
+
+
+export interface InputAttributesUIProps {
+  name: string;
+}
+
 
 

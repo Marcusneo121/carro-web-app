@@ -10,6 +10,12 @@ const nextConfig = {
       },
       {
         protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+        port: "",
+        pathname: "/v0/b/p2p-car-sharing.appspot.com/o/**",
+      },
+      {
+        protocol: "https",
         hostname: "images.unsplash.com",
         port: "",
       },

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Nunito as FontSans } from "next/font/google";
 import "./globals.css";
 
+import { CookiesProvider } from "next-client-cookies/server";
 import { cn } from "@/lib/utils";
 import NavBar from "@/components/NavBar";
 import Footer from "@/components/Footer";
@@ -27,7 +28,7 @@ export default function RootLayout({
         )}
       >
         {/* <NavBar /> */}
-        {children}
+        <CookiesProvider>{children}</CookiesProvider>
         {/* <Footer /> */}
       </body>
     </html>
