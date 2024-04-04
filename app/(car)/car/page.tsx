@@ -5,7 +5,7 @@ import CarList from "../components/CarList";
 import { useEffect, useState } from "react";
 import { ICars } from "@/types/api_index";
 
-export default async function Home() {
+export default function Car() {
   const [carData, setCarData] = useState<ICars>();
   const [isLoading, setIsLoading] = useState<boolean>(true);
 

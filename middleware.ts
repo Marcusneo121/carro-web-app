@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const protectedRoutes = ["/settings", "/cars"];
+const protectedRoutes = ["/settings", "/car"];
 
 export default function middleware(req: NextRequest) {
   const getTokenCookies = req.cookies.get("JWT_TOKEN");

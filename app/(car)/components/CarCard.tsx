@@ -2,12 +2,14 @@ import React from "react";
 import { ICar } from "@/types/api_index";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
 
 interface CarProps {
   car: ICar;
 }
 
 const CarCard = ({ car }: CarProps) => {
+  const router = useRouter();
   return (
     <div className="bg-primaryblue-100 group flex flex-col items-center justify-center rounded-3xl px-10 py-4 hover:bg-white hover:shadow-md">
       {/* <div className="relative h-[160px] w-[350px] px-2">
@@ -43,7 +45,9 @@ const CarCard = ({ car }: CarProps) => {
       <Button
         type="button"
         className="bg-primaryblue invisible mb-1 mt-2 w-full rounded-full font-bold group-hover:visible"
-        onClick={() => {}}
+        onClick={() => {
+          router.push(`car/${car.id}`);
+        }}
       >
         VIEW MORE
       </Button>

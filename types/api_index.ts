@@ -117,3 +117,32 @@ export interface ICar {
   updated_at: string;
   is_electric: boolean;
 }
+
+
+export interface ICarDetail {
+  data?: ICar;
+  status: string;
+  message: string;
+}
+
+export interface IHost {
+  data: IUser[];
+  status: string;
+  message: string;
+}
+
+export interface IUser {
+  id: number;
+  email: string;
+  first_name: string;
+  last_name: string;
+  address1: string;
+  address2: string;
+  address3: string;
+  phone_number: string;
+  profile_image: string;
+  poscode: string;
+  city: string;
+  state: string;
+}
+

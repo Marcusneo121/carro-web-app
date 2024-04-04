@@ -1,6 +1,6 @@
 "use client";
 
-import { ICars } from "@/types/api_index";
+import { ICar, ICarDetail, ICars } from "@/types/api_index";
 import Cookies from "js-cookie";
 
 const baseUrl = process.env.BASE_URL;
@@ -16,13 +16,48 @@ export const getAllCars = async (): Promise<ICars> => {
     },
   });
   const cars = await res.json();
+
+  console.log(cars.data[0].car_name);
+
   return cars;
+};
+
+export const getCarByID = async (id: string): Promise<ICarDetail> => {
+  try {
+    const res = await fetch(`${baseUrl}/car/${id}`, {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        Authorization: `Bearer ${getTokenCookies}`,
+      },
+    });
+    const car = await res.json();
+    return car;
+  } catch (error) {
+    throw new Error("Something went wrong! Please try again!");
+  }
+};
+
+export const getCarOwnerByID = async (id: string): Promise<ICarDetail> => {
+  try {
+    const res = await fetch(`${baseUrl}/user/${id}`, {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        Authorization: `Bearer ${getTokenCookies}`,
+      },
+    });
+    const car = await res.json();
+    return car;
+  } catch (error) {
+    throw new Error("Something went wrong! Please try again!");
+  }
 };
 
 // export const fetchCars = async (): Promise<ICarsProps> => {
 //   try {
 //     // await new Promise((resolve) => setTimeout(resolve, 1000));
-    
+
 //     // console.log(getTokenCookies?.toString());
 //     const res = await fetch(`${baseUrl}/car`, {
 //       cache: "no-store",

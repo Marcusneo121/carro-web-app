@@ -103,7 +103,7 @@ const LoginButton = () => {
         </Button>
       ) : (
         <div className="flex flex-col items-center justify-center gap-12 lg:flex-row">
-          <Link href="/cars">
+          <Link href="/car">
             <h3
               className="relative inline cursor-pointer text-lg font-bold text-white before:absolute before:-bottom-1 before:block before:h-[2px] 
 before:w-full before:origin-bottom-right before:scale-x-0 before:bg-white 
