@@ -24,6 +24,10 @@ const config = {
         sans: ["var(--font-sans)", ...fontFamily.sans],
       },
       colors: {
+        primaryblue: {
+          DEFAULT: "#2B59FF",
+          100: "#F5F8FF",
+        },
         brandprimary: "#7878F1",
         bigtextbrandcolor: "#4A4A4A",
         smalltextbrandcolor: "#858585",
