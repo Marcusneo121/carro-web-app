@@ -152,7 +152,7 @@ const SignUpLayout = () => {
           username: data.username,
           email: data.email,
           password: data.password,
-          firstName: data.confirmpassword,
+          firstName: data.firstname,
           lastName: data.lastname,
           address1: data.address1,
           address2: data.address2 ?? "-",

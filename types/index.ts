@@ -1,3 +1,5 @@
+import { ICarDetail } from "./api_index";
+
 export interface HowToInstrutionItemProps {
   number: string;
   title: string;
@@ -12,7 +14,6 @@ export interface MainDivProps {
 export interface DialogAuthProps {
   open: boolean;
   setOpen: (open: boolean) => void;
-  
 }
 
 export interface DynamicAlertDialogProps {
@@ -39,6 +40,13 @@ export interface YellowAuthButtonUIProps {
 
 export interface InputAttributesUIProps {
   name: string;
+}
+
+
+export interface BookingDialogProps {
+  car: ICarDetail;
+  open: boolean;
+  setOpen: (open: boolean) => void;
 }
 
 

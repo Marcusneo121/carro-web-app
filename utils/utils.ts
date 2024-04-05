@@ -1,3 +1,5 @@
+  import { format } from "date-fns";
+  
   export const ageFromDateOfBirthday = (dateOfBirth: any): number => {
     const today = new Date();
         const birthDate = new Date(dateOfBirth);
@@ -38,4 +40,28 @@
     //   second: "numeric",
     //   hour12: true,
     // });
+  }
+
+  export const dateFormatterBooking = (date: any): string => {
+    const anyDate = new Date(date);
+    // DateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(rentFrom),
+    return format(anyDate, "yyyy-MM-dd HH:mm:ss.SSS");
+  }
+
+  export const timeExtractor = (date: any): string => {
+    const anyDate = new Date(date);
+    const dateFormatted = new Intl.DateTimeFormat("en-US", {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true,
+      timeZone: "GMT",
+    });
+
+    return dateFormatted
+      .format(anyDate);
+  }
+
+  export const stringToDateTime = (date: any): Date => {
+    const anyDate = new Date(date);
+    return anyDate;
   }

@@ -4,6 +4,7 @@ import { getCarByID, getCarOwnerByID } from "@/services/cars";
 import { useEffect, useState } from "react";
 import { ICar, ICarDetail, ICarOwner } from "@/types/api_index";
 import CarDetailListing from "../../components/CarDetails";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 export default function CarDetails({ params }: { params: { id: string } }) {
   const [isLoading, setIsLoading] = useState(false);
@@ -45,7 +46,7 @@ export default function CarDetails({ params }: { params: { id: string } }) {
   if (isLoading) {
     return (
       <div className="flex min-h-[700px] items-center justify-center px-8 py-10 lg:px-20">
-        Loading...
+        <AiOutlineLoading3Quarters className="animate-spin text-[60px] text-brandprimary" />
       </div>
     );
   }

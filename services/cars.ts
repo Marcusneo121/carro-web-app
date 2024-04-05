@@ -17,8 +17,6 @@ export const getAllCars = async (): Promise<ICars> => {
   });
   const cars = await res.json();
 
-  console.log(cars.data[0].car_name);
-
   return cars;
 };
 
@@ -39,6 +37,22 @@ export const getCarByID = async (id: string): Promise<ICarDetail> => {
 };
 
 export const getCarOwnerByID = async (id: string): Promise<ICarOwner> => {
+  try {
+    const res = await fetch(`${baseUrl}/user/${id}`, {
+      method: "GET",
+      cache: "no-store",
+      headers: {
+        Authorization: `Bearer ${getTokenCookies}`,
+      },
+    });
+    const owner = await res.json();
+    return owner;
+  } catch (error) {
+    throw new Error("Something went wrong! Please try again!");
+  }
+};
+
+export const bookCar = async (id: string): Promise<ICarOwner> => {
   try {
     const res = await fetch(`${baseUrl}/user/${id}`, {
       method: "GET",

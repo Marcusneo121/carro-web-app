@@ -1,5 +1,7 @@
+"use client";
+
 import { ICar, ICarDetail, ICarOwner } from "@/types/api_index";
-import React from "react";
+import React, { useState } from "react";
 import CarDetailsCarousel from "./CarDetailsCarousel";
 import { IoLocationOutline } from "react-icons/io5";
 import { MdOutlineDirectionsCarFilled, MdEventAvailable } from "react-icons/md";
@@ -7,7 +9,12 @@ import { FaRegUser } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
-import { dateFormatterGMT } from "@/utils/utils";
+import {
+  dateFormatterGMT,
+  stringToDateTime,
+  timeExtractor,
+} from "@/utils/utils";
+import { BookingDialog } from "./BookingDialog";
 
 interface CarDetailProps {
   car: ICarDetail;
@@ -15,6 +22,7 @@ interface CarDetailProps {
 }
 
 const CarDetailListing: React.FC<CarDetailProps> = ({ car, owner }) => {
+  const [bookingDialog, setBookingDialog] = useState<boolean>(false);
   const listOfCarImages = [
     car.data?.car_main_pic ?? "",
     car.data?.car_image_one ?? "",
@@ -26,8 +34,12 @@ const CarDetailListing: React.FC<CarDetailProps> = ({ car, owner }) => {
   const fromDate = dateFormatterGMT(car.data.available_from_date);
   const toDate = dateFormatterGMT(car.data.available_to_date);
 
+  const fromTime = stringToDateTime(car.data.available_from_date);
+
   return (
     <div className="flex w-full flex-col items-center">
+      {/* <div>{fromTime.toISOString()}</div>
+      <input type="datetime-local" min={fromTime.toISOString()} /> */}
       {/* <div>
         {utcFromDate.format(fromDate).replaceAll("/", "-").replaceAll(",", "")}
       </div> */}
@@ -149,9 +161,13 @@ const CarDetailListing: React.FC<CarDetailProps> = ({ car, owner }) => {
               <Button
                 variant="secondary"
                 className="text-md h-full w-[150px] rounded-xl font-bold hover:bg-brandprimary hover:font-extrabold hover:text-white"
+                onClick={() => {
+                  setBookingDialog(!bookingDialog);
+                }}
               >
                 Book Now
               </Button>
+              <BookingDialog open={bookingDialog} setOpen={setBookingDialog} car={car}/>
             </div>
           </div>
         </div>

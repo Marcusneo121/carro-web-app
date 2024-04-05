@@ -108,16 +108,19 @@ const CarUserAction = () => {
       } else {
         console.log("is null");
         setProfileImageURL("-");
-        if (
-          parsedUserData.data.profile.first_name !== "-" &&
-          parsedUserData.data.profile.first_name !== null
-        ) {
-          setFirstName(parsedUserData.data.profile.first_name);
-          setLastName(parsedUserData.data.profile.last_name);
-        } else {
-          setFirstName("-");
-          setLastName("-");
-        }
+      }
+
+      if (
+        parsedUserData.data?.profile.first_name !== "-" &&
+        parsedUserData.data?.profile.first_name !== null
+      ) {
+        console.log("is NAME not null");
+        setFirstName(parsedUserData.data?.profile.first_name);
+        setLastName(parsedUserData.data?.profile.last_name);
+      } else {
+        console.log("is NAME null");
+        setFirstName("-");
+        setLastName("-");
       }
     }
   }, []);
