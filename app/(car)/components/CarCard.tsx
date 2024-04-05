@@ -11,7 +11,7 @@ interface CarProps {
 const CarCard = ({ car }: CarProps) => {
   const router = useRouter();
   return (
-    <div className="bg-primaryblue-100 group flex flex-col items-center justify-center rounded-3xl px-10 py-4 hover:bg-white hover:shadow-md">
+    <div className="group flex flex-col items-center justify-center rounded-3xl bg-primaryblue-100 px-10 py-4 hover:bg-white hover:shadow-md">
       {/* <div className="relative h-[160px] w-[350px] px-2">
         <Image
           alt="car pic"
@@ -44,7 +44,7 @@ const CarCard = ({ car }: CarProps) => {
       </div>
       <Button
         type="button"
-        className="bg-primaryblue invisible mb-1 mt-2 w-full rounded-full font-bold group-hover:visible"
+        className="invisible mb-1 mt-2 w-full rounded-full bg-primaryblue font-bold group-hover:visible"
         onClick={() => {
           router.push(`car/${car.id}`);
         }}

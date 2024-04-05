@@ -226,14 +226,14 @@ const CarUserAction = () => {
       <Transition
         show={isMobileNavOpen}
         enter="transition-opacity duration-200 ease-in-out"
-        enterFrom="opacity-0"
+        enterFrom="opacity-100"
         enterTo="opacity-100"
         leave="transition-opacity duration-300 ease-in-out"
         leaveFrom="opacity-100"
         leaveTo="opacity-0"
       >
         <div
-          className={`absolute left-0 top-24 z-10 flex h-full w-full flex-col items-center gap-10 bg-brandprimary pt-16`}
+          className={`absolute left-0 top-24 z-50 flex h-full w-full flex-col items-center gap-10 bg-brandprimary pt-16`}
           //   className={`absolute z-10 flex h-full w-full min-w-96 items-start justify-center bg-gray-300 pt-10`}
         >
           <Link href="/">

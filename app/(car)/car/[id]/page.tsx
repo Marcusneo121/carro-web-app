@@ -1,14 +1,15 @@
 "use client";
 
-import { getCarByID } from "@/services/cars";
+import { getCarByID, getCarOwnerByID } from "@/services/cars";
 import { useEffect, useState } from "react";
-import { ICar, ICarDetail } from "@/types/api_index";
+import { ICar, ICarDetail, ICarOwner } from "@/types/api_index";
 import CarDetailListing from "../../components/CarDetails";
 
 export default function CarDetails({ params }: { params: { id: string } }) {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState();
   const [carData, setCarData] = useState<ICarDetail>();
+  const [ownerData, setOwnerData] = useState<ICarOwner>();
 
   const fetchCarDetails = async () => {
     setIsLoading(true);
@@ -18,9 +19,15 @@ export default function CarDetails({ params }: { params: { id: string } }) {
       if (carDetails.status === "ok") {
         setCarData(carDetails);
 
-        // const ownerDetails = fetchCarOwnerDetails
+        const ownerDetails = await getCarOwnerByID(
+          carDetails.data.user_id.toString(),
+        );
 
-
+        if (ownerDetails.status === "ok") {
+          setOwnerData(ownerDetails);
+        } else {
+          throw new Error("Something went wrong.");
+        }
       } else {
         throw new Error("Something went wrong.");
       }
@@ -52,10 +59,10 @@ export default function CarDetails({ params }: { params: { id: string } }) {
   }
 
   return (
-    <div className="min-h-[800px] px-8 py-10 lg:px-20">
-      {carData && (
+    <div className="min-h-[800px] px-8 py-5 lg:px-20">
+      {carData && ownerData && (
         <div className="flex flex-col items-center">
-          <CarDetailListing car={carData} />
+          <CarDetailListing car={carData} owner={ownerData} />
         </div>
       )}
       {/* <h1 className="mb-5 text-2xl font-bold md:mb-10 md:text-3xl">

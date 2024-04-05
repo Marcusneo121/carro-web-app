@@ -120,13 +120,13 @@ export interface ICar {
 
 
 export interface ICarDetail {
-  data?: ICar;
+  data: ICar;
   status: string;
   message: string;
 }
 
-export interface IHost {
-  data: IUser[];
+export interface ICarOwner {
+  data: IUser;
   status: string;
   message: string;
 }

@@ -1,6 +1,6 @@
 "use client";
 
-import { ICar, ICarDetail, ICars } from "@/types/api_index";
+import { ICar, ICarDetail, ICarOwner, ICars } from "@/types/api_index";
 import Cookies from "js-cookie";
 
 const baseUrl = process.env.BASE_URL;
@@ -38,7 +38,7 @@ export const getCarByID = async (id: string): Promise<ICarDetail> => {
   }
 };
 
-export const getCarOwnerByID = async (id: string): Promise<ICarDetail> => {
+export const getCarOwnerByID = async (id: string): Promise<ICarOwner> => {
   try {
     const res = await fetch(`${baseUrl}/user/${id}`, {
       method: "GET",
@@ -47,8 +47,8 @@ export const getCarOwnerByID = async (id: string): Promise<ICarDetail> => {
         Authorization: `Bearer ${getTokenCookies}`,
       },
     });
-    const car = await res.json();
-    return car;
+    const owner = await res.json();
+    return owner;
   } catch (error) {
     throw new Error("Something went wrong! Please try again!");
   }
