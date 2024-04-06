@@ -65,3 +65,22 @@
     const anyDate = new Date(date);
     return anyDate;
   }
+
+  export const dateIsBefore = (dateTarget: Date, dateToCompare: Date): boolean => {
+      if(dateTarget < dateToCompare){
+        return true;
+      } else {
+        return false;
+      }
+  }
+
+  export const dateIsAfter = (
+    dateTarget: Date,
+    dateToCompare: Date,
+  ): boolean => {
+    if (dateTarget > dateToCompare) {
+      return true;
+    } else {
+      return false;
+    }
+  };
