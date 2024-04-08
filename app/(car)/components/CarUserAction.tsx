@@ -127,14 +127,23 @@ const CarUserAction = () => {
 
   return (
     <div className={`flex items-center justify-center`}>
-      <div className="mr-20 mt-1 max-lg:hidden">
-        <Link href="/" className="">
+      <div className="mr-10 mt-1 flex flex-row gap-10 max-lg:hidden">
+        <Link href="/hostcar" className="">
           <h3
             className="relative inline cursor-pointer text-lg font-bold text-white before:absolute before:-bottom-1 before:block before:h-[2px] 
             before:w-full before:origin-bottom-right before:scale-x-0 before:bg-white 
             before:transition before:duration-300 before:ease-in-out hover:font-extrabold hover:before:origin-bottom-left hover:before:scale-x-100"
           >
             HOST CAR
+          </h3>
+        </Link>
+        <Link href="/mybooking" className="">
+          <h3
+            className="relative inline cursor-pointer text-lg font-bold text-white before:absolute before:-bottom-1 before:block before:h-[2px] 
+            before:w-full before:origin-bottom-right before:scale-x-0 before:bg-white 
+            before:transition before:duration-300 before:ease-in-out hover:font-extrabold hover:before:origin-bottom-left hover:before:scale-x-100"
+          >
+            MY BOOKING
           </h3>
         </Link>
       </div>
@@ -239,13 +248,22 @@ const CarUserAction = () => {
           className={`absolute left-0 top-24 z-50 flex h-full w-full flex-col items-center gap-10 bg-brandprimary pt-16`}
           //   className={`absolute z-10 flex h-full w-full min-w-96 items-start justify-center bg-gray-300 pt-10`}
         >
-          <Link href="/">
+          <Link href="/hostcar">
             <h3
-              className="relative inline cursor-pointer text-base font-bold text-gray-300 before:absolute before:-bottom-1 before:block before:h-[2px] 
-            before:w-full before:origin-bottom-right before:scale-x-0 before:bg-gray-300
-            before:transition before:duration-300 before:ease-in-out hover:font-extrabold hover:before:origin-bottom-left hover:before:scale-x-100"
+              className="relative inline cursor-pointer text-lg font-bold text-white before:absolute before:-bottom-1 before:block before:h-[2px] 
+              before:w-full before:origin-bottom-right before:scale-x-0 before:bg-white 
+              before:transition before:duration-300 before:ease-in-out hover:font-extrabold hover:before:origin-bottom-left hover:before:scale-x-100"
             >
               HOST CAR
+            </h3>
+          </Link>
+          <Link href="/mybooking" className="">
+            <h3
+              className="relative inline cursor-pointer text-lg font-bold text-white before:absolute before:-bottom-1 before:block before:h-[2px] 
+            before:w-full before:origin-bottom-right before:scale-x-0 before:bg-white 
+            before:transition before:duration-300 before:ease-in-out hover:font-extrabold hover:before:origin-bottom-left hover:before:scale-x-100"
+            >
+              MY BOOKING
             </h3>
           </Link>
           <div className={`flex flex-col items-center gap-10`}>

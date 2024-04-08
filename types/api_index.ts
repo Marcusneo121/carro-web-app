@@ -40,7 +40,6 @@ export interface ILoginJWTData {
   message: string;
 }
 
-
 export interface ILogoutProps {
   revoked: boolean;
   message: string;
@@ -89,9 +88,9 @@ export interface Token {
 }
 //Login Data Return End
 
-
 export interface ICars {
   data: ICar[];
+  status: string;
   message: string;
 }
 
@@ -117,7 +116,6 @@ export interface ICar {
   updated_at: string;
   is_electric: boolean;
 }
-
 
 export interface ICarDetail {
   data: ICar;
@@ -146,3 +144,80 @@ export interface IUser {
   state: string;
 }
 
+export interface IBooking {
+  car_id: number;
+  bargain_amount: string;
+  rent_from_date: string;
+  rent_to_date: string;
+}
+
+export interface IBookedCar {
+  data: BookingDetails;
+  status: string;
+  message: string;
+}
+
+export interface BookingDetails {
+  bargainData: BookingItemData;
+}
+
+export interface BookingItemData {
+  renter_id: number;
+  host_id: number;
+  car_id: number;
+  bargain_amount: string;
+  last_bargain_user: number;
+  last_bargain_amount: string;
+  days_of_rental: number;
+  bargain_status_id: number;
+  rent_from_date: string;
+  rent_to_date: string;
+  created_at: string;
+  updated_at: string;
+  id: number;
+}
+
+export interface MyBookings {
+  data: IMyBooking[];
+  status: string;
+  message: string;
+}
+
+export interface IMyBooking {
+  ori_bargain_id: number;
+  id: number;
+  transaction_id: any;
+  renter_id: number;
+  host_id: number;
+  car_id: number;
+  bargain_amount: string;
+  last_bargain_user: number;
+  last_bargain_amount: string;
+  days_of_rental: number;
+  bargain_status_id: number;
+  rent_from_date: string;
+  rent_to_date: string;
+  created_at: string;
+  updated_at: string;
+  ori_car_id: number;
+  user_id: number;
+  car_name: string;
+  color: string;
+  engine_capacity: string;
+  year_made: string;
+  seat: string;
+  location: string;
+  car_main_pic: string;
+  car_image_one: string;
+  car_image_two: string;
+  car_image_three: string;
+  car_image_four: string;
+  car_plate: string;
+  price: string;
+  available_to_date: string;
+  available_from_date: string;
+  is_electric: boolean;
+  ori_bargain_status_id: number;
+  ori_bargain_name: string;
+  name: string;
+}

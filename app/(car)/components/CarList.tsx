@@ -19,7 +19,7 @@ const CarList: React.FC<CarListProps> = ({ cars }) => {
     <div className="">
       {cars === undefined ? (
         <div>
-          <h1>No Result.</h1>
+          <h1>Error....</h1>
         </div>
       ) : (
         <div className="grid grid-cols-3 gap-10 max-lg:grid-cols-2 max-md:grid-cols-1 max-md:gap-4">

@@ -19,12 +19,18 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { CgClose } from "react-icons/cg";
 import {
+  dateFormatterBooking,
   dateFormatterGMT,
   dateIsAfter,
   dateIsBefore,
   timeExtractor,
 } from "@/utils/utils";
 import { useCallback, useEffect, useReducer, useState } from "react";
+import { toast } from "react-hot-toast";
+import { bookCar } from "@/services/cars";
+import { IBookedCar } from "@/types/api_index";
+import { FaArrowRightLong } from "react-icons/fa6";
+import { FaLocationArrow } from "react-icons/fa";
 
 export function BookingDialog({ open, setOpen, car }: BookingDialogProps) {
   const schema = z.object({
@@ -231,13 +237,13 @@ export function BookingDialog({ open, setOpen, car }: BookingDialogProps) {
   };
 
   const onSubmit: SubmitHandler<FormFields> = async (data) => {
-    await new Promise((resolve) => setTimeout(resolve, 3000));
+    // await new Promise((resolve) => setTimeout(resolve, 3000));
     const fromDateNowValidation = validateFromTimeNow(data);
     const fromDateDBValidation = validateFromTimeDB(data);
     const toDateNowValidation = validateToTimeNow(data);
     const toDateDBValidation = validateToTimeDB(data);
     const toFromValidation = validateToFrom(data);
-    
+
     if (
       fromDateNowValidation === true &&
       fromDateDBValidation === true &&
@@ -245,9 +251,39 @@ export function BookingDialog({ open, setOpen, car }: BookingDialogProps) {
       toDateDBValidation === true &&
       toFromValidation === true
     ) {
+      try {
+        const submitBookingData: IBookedCar = await bookCar({
+          car_id: car.data.id,
+          bargain_amount: data.askprice.toString(),
+          rent_from_date: dateFormatterBooking(data.bookingfromdate),
+          rent_to_date: dateFormatterBooking(data.bookingtodate),
+        });
+
+        if (submitBookingData.status === "ok") {
+          await resetAllFieldAndError();
+          await toast.success(
+            "Your booking is successful! We are letting the host know.",
+            {
+              duration: 2000,
+            },
+          );
+          await toast.success("Navigating to My Booking page.", {
+            duration: 3000,
+            icon: <FaLocationArrow className="animate-pulse" />,
+          });
+        } else {
+          toast.error("Something went wrong! Please try again.");
+        }
+      } catch (error) {
+        toast.error("Something went wrong! Please try again.");
+      }
       console.log("Can call api");
+      // dateFormatterBooking(data.bookingfromdate);
+      // dateFormatterBooking(data.bookingtodate);
     } else {
-      console.log("error cannot call api yet");
+      toast.error(
+        "Something went wrong! Please ensure all warning are fulfilled and try again.",
+      );
     }
 
     // await validating(data);
