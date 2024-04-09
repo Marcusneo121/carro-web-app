@@ -81,19 +81,23 @@ to only with mx-w-6xl, so if set bg-color you will see somehow like padding/marg
 But its not, its just some auto justify
 */
 .mainDiv {
-  @apply max-w-7xl mx-auto overflow-hidden;
+  @apply mx-auto max-w-7xl overflow-hidden;
 }
 
 .signupInput {
-  @apply h-12 w-full rounded-lg border-[1px] px-4 py-2 focus:border-indigo-500 focus:ring-1 focus:outline-none;
+  @apply h-12 w-full rounded-lg border-[1px] px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-1;
 }
 
 .signUpLabel {
   @apply pl-1 text-lg font-bold;
 }
 
-.signUpError{ 
+.signUpError {
   @apply pl-1 pt-2 text-[13px] leading-none text-red-500;
+}
+
+.inputBasic {
+  @apply h-10 w-full rounded-lg border-[1px] px-4 py-2 focus:border-indigo-500 focus:outline-none focus:ring-1;
 }
 
 /* main, nav { 

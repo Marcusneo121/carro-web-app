@@ -5,6 +5,7 @@ import { IBooking, ICar, IMyBooking } from "@/types/api_index";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import BookingStatusBadge from "./BookingStatusBadge";
 
 interface MyBookingProps {
   booking: IMyBooking;
@@ -35,23 +36,29 @@ const BookingCarCard = ({ booking }: MyBookingProps) => {
           className="left-0 top-0 h-full w-full rounded-2xl object-cover"
         />
       </div>
-      <div className="mt-5 flex w-full flex-col">
-        <h2 className="text-2xl font-extrabold">{booking.car_name}</h2>
-        <h3 className="mt-1 w-max rounded-lg border-2 px-3 text-xl font-semibold text-slate-400">
-          {booking.car_plate}
-        </h3>
-        <h3 className="mt-1 w-max rounded-lg text-lg font-semibold">
-          <span className="text-2xl font-bold">
-            RM {booking.bargain_amount}
-          </span>{" "}
-          /day
-        </h3>
+      <div className="mt-5 flex w-full flex-row justify-between">
+        <div>
+          <h2 className="text-2xl font-extrabold">{booking.car_name}</h2>
+          <h3 className="mt-1 w-max rounded-lg border-2 px-3 text-xl font-semibold text-slate-400">
+            {booking.car_plate}
+          </h3>
+          <h3 className="mt-1 w-max rounded-lg text-lg font-semibold">
+            <span className="text-2xl font-bold">
+              RM {booking.bargain_amount}
+            </span>{" "}
+            /day
+          </h3>
+        </div>
+        <BookingStatusBadge
+          badgeID={booking.bargain_status_id}
+          badgeType={booking.ori_bargain_name}
+        />
       </div>
       <Button
         type="button"
         className="invisible mb-1 mt-2 w-full rounded-full bg-primaryblue font-bold group-hover:visible"
         onClick={() => {
-          //   router.push(`car/${car.id}`);
+          router.push(`mybooking/${booking.ori_bargain_id}`);
         }}
       >
         VIEW MORE

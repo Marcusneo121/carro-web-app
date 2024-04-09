@@ -1,3 +1,8 @@
+export interface INormalApiResponse {
+  status: string;
+  message: string;
+}
+
 export interface ILoginProps {
   username?: string;
   password?: string;
@@ -220,4 +225,15 @@ export interface IMyBooking {
   ori_bargain_status_id: number;
   ori_bargain_name: string;
   name: string;
+}
+
+export interface IMyBookingDetail {
+  data: IMyBooking;
+  status: string;
+  message: string;
+}
+
+export interface IBargaining {
+  bargain_id: number;
+  bargain_amount: string;
 }
