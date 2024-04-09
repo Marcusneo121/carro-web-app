@@ -1,4 +1,4 @@
-import { ICarDetail } from "./api_index";
+import { ICarDetail, IMyBooking } from "./api_index";
 
 export interface HowToInstrutionItemProps {
   number: string;
@@ -47,6 +47,10 @@ export interface BookingDialogProps {
   car: ICarDetail;
   open: boolean;
   setOpen: (open: boolean) => void;
+}
+
+export interface PendingPaymentStatusBadgeProps {
+  booking: IMyBooking;
 }
 
 

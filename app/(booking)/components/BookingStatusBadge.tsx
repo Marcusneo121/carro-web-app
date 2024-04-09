@@ -13,7 +13,7 @@ const BookingStatusBadge = ({
     //Pending
     case 0: {
       return (
-        <h3 className="text-pendingblue border-pendingblue mt-1 h-max w-max rounded-lg border-2 px-3 text-xl font-semibold">
+        <h3 className="text-pendingblue border-pendingblue mt-1 h-max w-max rounded-lg border-2 px-3 text-lg font-semibold">
           Pending
         </h3>
       );
@@ -22,7 +22,7 @@ const BookingStatusBadge = ({
     //Bargaining
     case 1: {
       return (
-        <h3 className="text-bargainingyellow border-bargainingyellow mt-1 h-max w-max rounded-lg border-2 px-3 text-xl font-semibold">
+        <h3 className="text-bargainingyellow border-bargainingyellow mt-1 h-max w-max rounded-lg border-2 px-3 text-lg font-semibold">
           Bargaining
         </h3>
       );
@@ -30,7 +30,7 @@ const BookingStatusBadge = ({
     //Host Accepted
     case 2: {
       return (
-        <h3 className="text-hostguestacceptedgreen border-hostguestacceptedgreen mt-1 h-max w-max rounded-lg border-2 px-3 text-xl font-semibold">
+        <h3 className="text-hostguestacceptedgreen border-hostguestacceptedgreen mt-1 h-max w-max rounded-lg border-2 px-3 text-lg font-semibold">
           Host Accepted
         </h3>
       );
@@ -38,7 +38,7 @@ const BookingStatusBadge = ({
     //Host Rejected
     case 3: {
       return (
-        <h3 className="text-hostguestrejectedred border-hostguestrejectedred mt-1 h-max w-max rounded-lg border-2 px-3 text-xl font-semibold">
+        <h3 className="text-hostguestrejectedred border-hostguestrejectedred mt-1 h-max w-max rounded-lg border-2 px-3 text-lg font-semibold">
           Host Rejected
         </h3>
       );
@@ -46,7 +46,7 @@ const BookingStatusBadge = ({
     //Guest Accepted
     case 4: {
       return (
-        <h3 className="text-hostguestacceptedgreen border-hostguestacceptedgreen mt-1 h-max w-max rounded-lg border-2 px-3 text-xl font-semibold">
+        <h3 className="text-hostguestacceptedgreen border-hostguestacceptedgreen mt-1 h-max w-max rounded-lg border-2 px-3 text-lg font-semibold">
           Guest Accepted
         </h3>
       );
@@ -54,7 +54,7 @@ const BookingStatusBadge = ({
     //Guest Rejected
     case 5: {
       return (
-        <h3 className="text-hostguestrejectedred border-hostguestrejectedred mt-1 h-max w-max rounded-lg border-2 px-3 text-xl font-semibold">
+        <h3 className="text-hostguestrejectedred border-hostguestrejectedred mt-1 h-max w-max rounded-lg border-2 px-3 text-lg font-semibold">
           Guest Rejected
         </h3>
       );
@@ -62,14 +62,14 @@ const BookingStatusBadge = ({
     //Booking Paid
     case 6: {
       return (
-        <h3 className="text-bookingpaidgreen border-bookingpaidgreen mt-1 h-max w-max rounded-lg border-2 px-3 text-xl font-semibold">
+        <h3 className="text-bookingpaidgreen border-bookingpaidgreen mt-1 h-max w-max rounded-lg border-2 px-3 text-lg font-semibold">
           Booking Paid
         </h3>
       );
     }
     case 7: {
       return (
-        <h3 className="text-pendingpaymentblue border-pendingpaymentblue mt-1 h-max w-max rounded-lg border-2 px-3 text-xl font-semibold">
+        <h3 className="text-pendingpaymentblue border-pendingpaymentblue mt-1 h-max w-max rounded-lg border-2 px-3 text-lg font-semibold">
           Pending Payment
         </h3>
       );

@@ -44,7 +44,7 @@ const BookingCarCard = ({ booking }: MyBookingProps) => {
           </h3>
           <h3 className="mt-1 w-max rounded-lg text-lg font-semibold">
             <span className="text-2xl font-bold">
-              RM {booking.bargain_amount}
+              RM {booking.last_bargain_amount}
             </span>{" "}
             /day
           </h3>

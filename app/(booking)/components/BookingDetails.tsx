@@ -104,35 +104,13 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
     }
   };
 
-  //   saveButtonPress(Booking bookingData) {
-  //     if (priceController.text.isEmpty) {
-  //       EasyLoading.showError('New price cannot be empty before save.');
-  //     } else if (int.parse(priceController.text) !=
-  //         int.parse(bookingData.lastBargainAmount ?? "-1")) {
-  //       perDayPrice = priceController.text.toString();
-  //       ableToSave = false;
-  //       enableBigSaveButton = true;
-  //       priceController.clear();
-  //       setState(() {});
-  //     } else if (int.parse(priceController.text) ==
-  //         int.parse(bookingData.lastBargainAmount ?? "-1")) {
-  //       perDayPrice = priceController.text.toString();
-  //       ableToSave = false;
-  //       enableBigSaveButton = false;
-  //       priceController.clear();
-  //       setState(() {});
-  //     } else {
-  //       EasyLoading.showError('Something went wrong, please try again.');
-  //     }
-  //   }
-
   return (
     <div className="flex w-full flex-col items-center">
       <div className="">
         <CarDetailsCarousel carImages={listOfCarImages} />
       </div>
       <div className="w-[450px] max-sm:w-[350px]">
-        <div className="my-4 flex w-full flex-row justify-between max-md:px-3">
+        <div className="my-4 flex w-full flex-row justify-between max-md:flex-col max-md:px-3">
           <div>
             <h2 className="text-3xl font-extrabold">
               {booking.data?.car_name}
@@ -149,6 +127,14 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
               badgeID={booking.data.bargain_status_id}
               badgeType={booking.data.ori_bargain_name}
             />
+            {booking.data.bargain_status_id === 2 ||
+            booking.data.bargain_status_id === 4 ? (
+              <BookingStatusBadge badgeID={7} badgeType={"Pending Payment"} />
+            ) : (
+              <></>
+            )}
+
+            {/* */}
           </div>
         </div>
         <div className="flex w-full flex-col gap-4 max-md:px-2">
