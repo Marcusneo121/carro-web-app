@@ -181,7 +181,8 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
                         Save
                       </h2>
                     </Button>
-                  ) : (
+                  ) : booking.data.ori_bargain_status_id === 0 ||
+                    booking.data.ori_bargain_status_id === 1 ? (
                     <Button
                       variant="ghost"
                       onClick={() => {
@@ -193,6 +194,8 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
                         Edit
                       </h2>
                     </Button>
+                  ) : (
+                    <></>
                   )}
                 </div>
               </div>

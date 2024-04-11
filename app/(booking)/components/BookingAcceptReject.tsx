@@ -3,6 +3,7 @@ import { ILoginJWTData, IMyBookingDetail } from "@/types/api_index";
 import React from "react";
 import Cookies from "js-cookie";
 import { FaInfoCircle } from "react-icons/fa";
+import { parse } from "path";
 
 interface BookingAcceptRejectProps {
   booking: IMyBookingDetail;
@@ -62,11 +63,55 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
       return <></>;
     } else if (booking.data.ori_bargain_status_id === 2) {
       //Host Accepted bargain price, show payment
+      return (
+        <div className="mt-4">
+          <div className="flex flex-row items-end justify-between gap-2">
+            <div>
+              <h3 className="text-lg font-bold text-slate-500">Total :</h3>
+              <h1 className="text-2xl font-extrabold">
+                RM{" "}
+                {parseInt(booking.data.last_bargain_amount) *
+                  booking.data.days_of_rental}
+              </h1>
+              <div className="text-sm font-bold italic text-slate-400">
+                RM {parseInt(booking.data.last_bargain_amount)} x{" "}
+                {booking.data.days_of_rental} day(s)
+              </div>
+            </div>
+
+            <Button className="text-md h-12 w-40 rounded-lg bg-brandprimary font-bold text-white hover:bg-brandprimary">
+              Pay
+            </Button>
+          </div>
+        </div>
+      );
     } else if (booking.data.ori_bargain_status_id === 3) {
       //Host Rejected
       return <></>;
     } else if (booking.data.ori_bargain_status_id === 4) {
       //Guest Accepted bargain price, show payment
+      return (
+        <div className="mt-4">
+          <div className="flex flex-row items-end justify-between gap-2">
+            <div>
+              <h3 className="text-lg font-bold text-slate-500">Total :</h3>
+              <h1 className="text-2xl font-extrabold">
+                RM{" "}
+                {parseInt(booking.data.last_bargain_amount) *
+                  booking.data.days_of_rental}
+              </h1>
+              <div className="text-sm font-bold italic text-slate-400">
+                RM {parseInt(booking.data.last_bargain_amount)} x{" "}
+                {booking.data.days_of_rental} day(s)
+              </div>
+            </div>
+
+            <Button className="text-md h-12 w-40 rounded-lg bg-brandprimary font-bold text-white hover:bg-brandprimary">
+              Pay
+            </Button>
+          </div>
+        </div>
+      );
     } else if (booking.data.ori_bargain_status_id === 5) {
       //Guest Rejected
       return <></>;
@@ -76,33 +121,26 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
     } else {
       //All other state filtered, so show accept reject
       return (
-        <div>
-          testing {userLoginCookies.data?.user.id}{" "}
-          {booking.data.last_bargain_user}
+        <div className="mt-4">
+          {userLoginCookies?.data?.profile.address1}
+          <div className="flex flex-row gap-2">
+            <div className="flex flex-1 justify-center">
+              <Button
+                variant={"outline"}
+                className="text-md h-12 w-full rounded-lg border-2 border-red-500 bg-white font-bold text-red-500 hover:bg-red-200 hover:text-red-500"
+              >
+                Reject
+              </Button>
+            </div>
+            <div className="flex flex-1 justify-center">
+              <Button className="text-md h-12 w-full rounded-lg bg-green-500 font-bold text-white shadow-none hover:bg-green-400">
+                Accept
+              </Button>
+            </div>
+          </div>
         </div>
       );
     }
-
-    // return (
-    //   <div className="mt-4">
-    //     {userLoginCookies?.data?.profile.address1}
-    //     <div className="flex flex-row gap-2">
-    //       <div className="flex flex-1 justify-center">
-    //         <Button
-    //           variant={"outline"}
-    //           className="text-md h-12 w-full rounded-lg border-2 border-red-500 bg-white font-bold text-red-500 hover:bg-red-200 hover:text-red-500"
-    //         >
-    //           Reject
-    //         </Button>
-    //       </div>
-    //       <div className="flex flex-1 justify-center">
-    //         <Button className="text-md h-12 w-full rounded-lg bg-green-500 font-bold text-white shadow-none hover:bg-green-400">
-    //           Accept
-    //         </Button>
-    //       </div>
-    //     </div>
-    //   </div>
-    // );
   }
 };
 
