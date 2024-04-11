@@ -49,10 +49,18 @@ const BookingCarCard = ({ booking }: MyBookingProps) => {
             /day
           </h3>
         </div>
-        <BookingStatusBadge
-          badgeID={booking.bargain_status_id}
-          badgeType={booking.ori_bargain_name}
-        />
+        <div className="flex flex-col items-end">
+          <BookingStatusBadge
+            badgeID={booking.bargain_status_id}
+            badgeType={booking.ori_bargain_name}
+          />
+          {booking.bargain_status_id === 2 ||
+          booking.bargain_status_id === 4 ? (
+            <BookingStatusBadge badgeID={7} badgeType={"Pending Payment"} />
+          ) : (
+            <></>
+          )}
+        </div>
       </div>
       <Button
         type="button"

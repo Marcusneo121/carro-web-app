@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const protectedRoutes = ["/settings", "/car"];
+const protectedRoutes = ["/settings", "/car", "/mybooking", "/mybooking/"];
 
 export default function middleware(req: NextRequest) {
   const getTokenCookies = req.cookies.get("JWT_TOKEN");
@@ -28,5 +28,5 @@ export default function middleware(req: NextRequest) {
     return NextResponse.redirect(absoluteURL.toString());
   }
 
-
+  
 }

@@ -14,6 +14,8 @@ import { SubmitHandler, useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { bargainingCar } from "@/services/booking";
+import BookingAcceptReject from "./BookingAcceptReject";
+import Cookies from "js-cookie";
 
 interface BookingDetailProps {
   booking: IMyBookingDetail;
@@ -122,7 +124,7 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
               Host Initial Price : RM {booking.data.price}
             </h3>
           </div>
-          <div>
+          <div className="flex flex-col items-end">
             <BookingStatusBadge
               badgeID={booking.data.bargain_status_id}
               badgeType={booking.data.ori_bargain_name}
@@ -229,6 +231,11 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
             </div>
           </form>
         </div>
+        <BookingAcceptReject
+          booking={booking}
+          jwttoken={Cookies.get("JWT_TOKEN")}
+          userlogingdata={Cookies.get("USER_LOGIN_DATA")}
+        />
       </div>
     </div>
   );
