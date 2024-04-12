@@ -3,6 +3,7 @@ import {
   IMyBooking,
   IMyBookingDetail,
   INormalApiResponse,
+  IUpdateBargaining,
   MyBookings,
 } from "@/types/api_index";
 import Cookies from "js-cookie";
@@ -57,9 +58,30 @@ export const bargainingCar = async (
         Authorization: `Bearer ${tokenCookies}`,
       },
       body: JSON.stringify(bargainingData),
-    })
+    });
     const bargaining = await res.json();
     return bargaining;
+  } catch (error) {
+    throw new Error("Something went wrong! Please try again!");
+  }
+};
+
+export const updateBargaining = async (
+  updateBargainingData: IUpdateBargaining,
+): Promise<INormalApiResponse> => {
+  try {
+    const tokenCookies = Cookies.get("JWT_TOKEN");
+    const res = await fetch(`${baseUrl}/rent/bargain/guest/action`, {
+      method: "PATCH",
+      cache: "no-store",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${tokenCookies}`,
+      },
+      body: JSON.stringify(updateBargainingData),
+    });
+    const updateBargaining = await res.json();
+    return updateBargaining;
   } catch (error) {
     throw new Error("Something went wrong! Please try again!");
   }

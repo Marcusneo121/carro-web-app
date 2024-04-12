@@ -237,3 +237,9 @@ export interface IBargaining {
   bargain_id: number;
   bargain_amount: string;
 }
+
+export interface IUpdateBargaining {
+  bargain_id: number;
+  action_type: string;
+}
+

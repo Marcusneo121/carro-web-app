@@ -1,9 +1,16 @@
 import { Button } from "@/components/ui/button";
-import { ILoginJWTData, IMyBookingDetail } from "@/types/api_index";
-import React from "react";
+import {
+  ILoginJWTData,
+  IMyBookingDetail,
+  INormalApiResponse,
+  IUpdateBargaining,
+} from "@/types/api_index";
+import React, { useState } from "react";
 import Cookies from "js-cookie";
 import { FaInfoCircle } from "react-icons/fa";
 import { parse } from "path";
+import { updateBargaining } from "@/services/booking";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
 
 interface BookingAcceptRejectProps {
   booking: IMyBookingDetail;
@@ -11,11 +18,38 @@ interface BookingAcceptRejectProps {
   userlogingdata?: string;
 }
 
+export interface InputProps
+  extends React.InputHTMLAttributes<HTMLInputElement> {}
+
 const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
   booking,
   jwttoken,
   userlogingdata,
 }) => {
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
+  const [isRejecting, setIsRejecting] = useState<boolean>(false);
+  const [isAccepting, setIsAccepting] = useState<boolean>(false);
+
+  const acceptRejectAction = async (action: string) => {
+    setIsSubmitting(true);
+    if (action === "accept") {
+      setIsAccepting(true);
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+      // const acceptRejectBargain: INormalApiResponse = await updateBargaining({
+      //   bargain_id: booking.data.ori_bargain_id,
+      //   action_type: action,
+      // });
+    } else if (action === "reject") {
+      setIsRejecting(true);
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+    } else {
+      //display errors
+    }
+    setIsAccepting(false);
+    setIsRejecting(false);
+    setIsSubmitting(false);
+  };
+
   if (userlogingdata === undefined) {
     return (
       <div className="mt-4">
@@ -122,19 +156,44 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
       //All other state filtered, so show accept reject
       return (
         <div className="mt-4">
-          {userLoginCookies?.data?.profile.address1}
           <div className="flex flex-row gap-2">
             <div className="flex flex-1 justify-center">
               <Button
+                disabled={isSubmitting}
+                type="submit"
                 variant={"outline"}
                 className="text-md h-12 w-full rounded-lg border-2 border-red-500 bg-white font-bold text-red-500 hover:bg-red-200 hover:text-red-500"
+                onClick={() => {
+                  acceptRejectAction("reject");
+                }}
               >
-                Reject
+                {isRejecting ? (
+                  <div className="flex flex-row items-center justify-center gap-2">
+                    <AiOutlineLoading3Quarters className="animate-spin" />{" "}
+                    <div>Rejecting...</div>
+                  </div>
+                ) : (
+                  <div>Reject</div>
+                )}
               </Button>
             </div>
             <div className="flex flex-1 justify-center">
-              <Button className="text-md h-12 w-full rounded-lg bg-green-500 font-bold text-white shadow-none hover:bg-green-400">
-                Accept
+              <Button
+                disabled={isSubmitting}
+                type="submit"
+                className="text-md h-12 w-full rounded-lg bg-green-500 font-bold text-white shadow-none hover:bg-green-400"
+                onClick={() => {
+                  acceptRejectAction("accept");
+                }}
+              >
+                {isAccepting ? (
+                  <div className="flex flex-row items-center justify-center gap-2">
+                    <AiOutlineLoading3Quarters className="animate-spin" />{" "}
+                    <div>Accepting...</div>
+                  </div>
+                ) : (
+                  <div>Accept</div>
+                )}
               </Button>
             </div>
           </div>
