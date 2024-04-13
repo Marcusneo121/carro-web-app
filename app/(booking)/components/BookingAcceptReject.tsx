@@ -11,6 +11,7 @@ import { FaInfoCircle } from "react-icons/fa";
 import { parse } from "path";
 import { updateBargaining } from "@/services/booking";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { toast } from "react-hot-toast";
 
 interface BookingAcceptRejectProps {
   booking: IMyBookingDetail;
@@ -30,18 +31,62 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
   const [isRejecting, setIsRejecting] = useState<boolean>(false);
   const [isAccepting, setIsAccepting] = useState<boolean>(false);
 
+  const apiAcceptRejectSuccess = async (action: string) => {
+    try {
+      const acceptRejectBargain: INormalApiResponse = await updateBargaining({
+        bargain_id: booking.data.ori_bargain_id,
+        action_type: action,
+      });
+
+      if (acceptRejectBargain.status === "success") {
+        return true;
+      } else {
+        return false;
+      }
+    } catch (error) {
+      return false;
+    }
+  };
+
   const acceptRejectAction = async (action: string) => {
     setIsSubmitting(true);
     if (action === "accept") {
       setIsAccepting(true);
-      await new Promise((resolve) => setTimeout(resolve, 3000));
-      // const acceptRejectBargain: INormalApiResponse = await updateBargaining({
-      //   bargain_id: booking.data.ori_bargain_id,
-      //   action_type: action,
-      // });
+      const acceptAction = await apiAcceptRejectSuccess(action);
+
+      console.log(acceptAction);
+
+      if (acceptAction === true) {
+        toast.success(
+          "You had accepted the booking bargain. Reloading and please proceed to payment.",
+          { duration: 2000 },
+        );
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        await window.location.reload();
+      } else {
+        toast.error(
+          "Something went wrong accepting this bargain, Please try again.",
+          { duration: 2000 },
+        );
+      }
+      // await new Promise((resolve) => setTimeout(resolve, 3000));
     } else if (action === "reject") {
       setIsRejecting(true);
-      await new Promise((resolve) => setTimeout(resolve, 3000));
+      const rejectAction = await apiAcceptRejectSuccess(action);
+
+      if (rejectAction === true) {
+        toast.success("You had rejected the booking bargain. Reloading...", {
+          duration: 2000,
+        });
+        await new Promise((resolve) => setTimeout(resolve, 3000));
+        await window.location.reload();
+      } else {
+        toast.error(
+          "Something went wrong rejecting this bargain, Please try again.",
+          { duration: 2000 },
+        );
+      }
+      // await new Promise((resolve) => setTimeout(resolve, 3000));
     } else {
       //display errors
     }

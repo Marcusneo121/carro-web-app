@@ -124,7 +124,7 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
               Host Initial Price : RM {booking.data.price}
             </h3>
           </div>
-          <div className="flex flex-col items-end">
+          <div className="flex flex-col md:items-end">
             <BookingStatusBadge
               badgeID={booking.data.bargain_status_id}
               badgeType={booking.data.ori_bargain_name}
