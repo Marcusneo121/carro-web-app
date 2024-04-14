@@ -12,6 +12,7 @@ import { parse } from "path";
 import { updateBargaining } from "@/services/booking";
 import { AiOutlineLoading3Quarters } from "react-icons/ai";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface BookingAcceptRejectProps {
   booking: IMyBookingDetail;
@@ -27,6 +28,7 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
   jwttoken,
   userlogingdata,
 }) => {
+  const router = useRouter();
   const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const [isRejecting, setIsRejecting] = useState<boolean>(false);
   const [isAccepting, setIsAccepting] = useState<boolean>(false);
@@ -158,7 +160,20 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
               </div>
             </div>
 
-            <Button className="text-md h-12 w-40 rounded-lg bg-brandprimary font-bold text-white hover:bg-brandprimary">
+            <Button
+              className="text-md h-12 w-40 rounded-lg bg-brandprimary font-bold text-white hover:bg-brandprimary"
+              onClick={() => {
+                const totalAmount = (
+                  parseInt(booking.data.last_bargain_amount) *
+                  booking.data.days_of_rental
+                ).toString();
+                const bargainIDData = booking.data.ori_bargain_id;
+                const rentaltransactionidData = booking.data.transaction_id;
+                router.push(
+                  `/payment?bargainid=${bargainIDData}&rentaltransactionid=${rentaltransactionidData}`,
+                );
+              }}
+            >
               Pay
             </Button>
           </div>
@@ -171,7 +186,7 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
       //Guest Accepted bargain price, show payment
       return (
         <div className="mt-4">
-          <div className="flex flex-row items-end justify-between gap-2">
+          <div className="flex flex-row items-end justify-between gap-2 px-2">
             <div>
               <h3 className="text-lg font-bold text-slate-500">Total :</h3>
               <h1 className="text-2xl font-extrabold">
@@ -185,7 +200,20 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
               </div>
             </div>
 
-            <Button className="text-md h-12 w-40 rounded-lg bg-brandprimary font-bold text-white hover:bg-brandprimary">
+            <Button
+              className="text-md h-12 w-40 rounded-lg bg-brandprimary font-bold text-white hover:bg-brandprimary"
+              onClick={() => {
+                const totalAmount = (
+                  parseInt(booking.data.last_bargain_amount) *
+                  booking.data.days_of_rental
+                ).toString();
+                const bargainIDData = booking.data.ori_bargain_id;
+                const rentaltransactionidData = booking.data.transaction_id;
+                router.push(
+                  `/payment?bargainid=${bargainIDData}&rentaltransactionid=${rentaltransactionidData}`,
+                );
+              }}
+            >
               Pay
             </Button>
           </div>
@@ -200,7 +228,7 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
     } else {
       //All other state filtered, so show accept reject
       return (
-        <div className="mt-4">
+        <div className="mt-4 max-md:px-2">
           <div className="flex flex-row gap-2">
             <div className="flex flex-1 justify-center">
               <Button

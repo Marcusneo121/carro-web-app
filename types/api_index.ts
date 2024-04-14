@@ -243,3 +243,39 @@ export interface IUpdateBargaining {
   action_type: string;
 }
 
+export interface ICreatePaymentIntent {
+  total_amount: string;
+  bargain_id: number;
+  rental_transaction_id: number;
+}
+
+export interface IMakePaymentIntent {
+  data: IPaymentIntentData;
+  status: string;
+  message: string;
+}
+
+export interface IPaymentIntentData {
+  paymentIntent: string;
+  ephemeralKey: string;
+  customer: string;
+  publishableKey: string;
+  payment_transaction_id: number;
+}
+
+export interface IConfirmPaymentData {
+  payment_transaction_id: number;
+  bargain_id: number;
+  rental_transaction_id: number;
+  stripe_customer_id: string;
+}
+
+export interface IConfirmPayment {
+  data: PaymentReferenceData;
+  status: string;
+  message: string;
+}
+
+export interface PaymentReferenceData {
+  payment_reference_id: string;
+}
