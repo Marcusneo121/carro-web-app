@@ -1,7 +1,13 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const protectedRoutes = ["/settings", "/car", "/mybooking", "/mybooking/"];
+const protectedRoutes = [
+  "/settings",
+  "/car",
+  "/mybooking",
+  "/mybooking/",
+  "/payment",
+];
 
 export default function middleware(req: NextRequest) {
   const getTokenCookies = req.cookies.get("JWT_TOKEN");
@@ -22,11 +28,9 @@ export default function middleware(req: NextRequest) {
   } else if (
     getTokenCookies !== undefined &&
     getLoginDataCookies !== undefined &&
-    req.nextUrl.pathname.startsWith('/login-new')
+    req.nextUrl.pathname.startsWith("/login-new")
   ) {
     const absoluteURL = new URL("/", req.nextUrl.origin);
     return NextResponse.redirect(absoluteURL.toString());
   }
-
-  
 }

@@ -23,6 +23,7 @@ export default function CheckoutForm({
   bargainID,
   rentalTransactionID,
   paymentIntentData,
+  bookingDetail,
 }: CheckoutFormProps) {
   const router = useRouter();
   const stripe = useStripe();
@@ -95,15 +96,24 @@ export default function CheckoutForm({
           CARRO
         </h1>
       </div>
+
+      <div className="p-4 bg-slate-100 rounded-xl">
+        <h1 className="font-bold text-md">Car : {bookingDetail.data.car_name}</h1>
+        <h1 className="font-bold text-md">Price : RM {bookingDetail.data.last_bargain_amount} /day</h1>
+        <h1 className="font-bold text-md">Days of rent : {bookingDetail.data.days_of_rental} day(s)</h1>
+        <h1 className="font-extrabold text-xl">Total : RM {parseInt(bookingDetail.data.last_bargain_amount) * bookingDetail.data.days_of_rental}</h1>
+        <h3 className="italic text-slate-400 text-sm">Calculation : RM {bookingDetail.data.last_bargain_amount} X {bookingDetail.data.days_of_rental}</h3>
+      </div>
+
       <PaymentElement id="payment-element" />
+      {message && <div id="payment-message text-red-500">{message}</div>}
       <Button
         disabled={isProcessing || !stripe || !elements}
         id="submit"
-        className="mt-5 w-full rounded-lg bg-brandprimary"
+        className="mt-5 w-full rounded-lg bg-brandprimary mb-10"
       >
         {isProcessing ? "Processing ... " : "Pay now"}
       </Button>
-      {message && <div id="payment-message">{message}</div>}
     </form>
   );
 }
