@@ -1,27 +1,25 @@
-import CarDetailsCarousel from "@/app/(car)/components/CarDetailsCarousel";
 import { IMyBookingDetail, INormalApiResponse } from "@/types/api_index";
-import BookingStatusBadge from "./BookingStatusBadge";
-import { IoLocationOutline } from "react-icons/io5";
-import { MdEventAvailable } from "react-icons/md";
 import { dateFormatterGMT } from "@/utils/utils";
-import { IoPricetagOutline } from "react-icons/io5";
-import { Button } from "@/components/ui/button";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
+import CarDetailsCarousel from "@/app/(car)/components/CarDetailsCarousel";
+import BookingStatusBadge from "@/app/(booking)/components/BookingStatusBadge";
+import { IoLocationOutline, IoPricetagOutline } from "react-icons/io5";
+import { MdEventAvailable } from "react-icons/md";
+import { Button } from "@/components/ui/button";
 import { toast } from "react-hot-toast";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { bargainingCar } from "@/services/booking";
-import BookingAcceptReject from "./BookingAcceptReject";
+import HostingAcceptReject from "./HostingAcceptReject";
 import Cookies from "js-cookie";
 
-interface BookingDetailProps {
-  booking: IMyBookingDetail;
+interface HostingDetailProps {
+  hosting: IMyBookingDetail;
 }
 
-const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
+const HostingDetailListing: React.FC<HostingDetailProps> = ({ hosting }) => {
   const schema = z.object({
     bargainprice: z.coerce.number().min(1, { message: "Bargain is required." }),
   });
@@ -38,29 +36,24 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
   });
 
   const listOfCarImages = [
-    booking.data?.car_main_pic ?? "",
-    booking.data?.car_image_one ?? "",
-    booking.data?.car_image_two ?? "",
-    booking.data?.car_image_three ?? "",
-    booking.data?.car_image_four ?? "",
+    hosting.data?.car_main_pic ?? "",
+    hosting.data?.car_image_one ?? "",
+    hosting.data?.car_image_two ?? "",
+    hosting.data?.car_image_three ?? "",
+    hosting.data?.car_image_four ?? "",
   ];
-  const router = useRouter();
-  const fromDate = dateFormatterGMT(booking.data.rent_from_date);
-  const toDate = dateFormatterGMT(booking.data.rent_to_date);
+  const fromDate = dateFormatterGMT(hosting.data.rent_from_date);
+  const toDate = dateFormatterGMT(hosting.data.rent_to_date);
   const [ableToSave, setAbleToSave] = useState<boolean>(false);
-  const [bargainingAmount, setBargainingAmount] = useState<string>();
-  const [changeBragainPrice, setchangeBragainPrice] = useState<
-    string | undefined
-  >();
 
   const handleSaveUpdateData: SubmitHandler<FormFields> = async (data) => {
     toast.loading("Saving....");
     if (
       parseInt(data.bargainprice.toString()) !==
-      parseInt(booking.data.last_bargain_amount.toString())
+      parseInt(hosting.data.last_bargain_amount.toString())
     ) {
       const updateBargainData: INormalApiResponse = await bargainingCar({
-        bargain_id: parseInt(booking.data.ori_bargain_id.toString()),
+        bargain_id: parseInt(hosting.data.ori_bargain_id.toString()),
         bargain_amount: data.bargainprice.toString(),
       });
 
@@ -83,7 +76,7 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
       }
     } else if (
       parseInt(data.bargainprice.toString()) ===
-      parseInt(booking.data.last_bargain_amount.toString())
+      parseInt(hosting.data.last_bargain_amount.toString())
     ) {
       await toast.dismiss();
       await toast.success(
@@ -108,29 +101,29 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
 
   return (
     <div className="flex w-full flex-col items-center">
-      <div className="">
+      <div>
         <CarDetailsCarousel carImages={listOfCarImages} />
       </div>
       <div className="w-[450px] max-sm:w-[350px]">
         <div className="my-4 flex w-full flex-row justify-between max-md:flex-col max-md:px-3">
           <div>
             <h2 className="text-3xl font-extrabold">
-              {booking.data?.car_name}
+              {hosting.data?.car_name}
             </h2>
             <h3 className="mt-1 w-max rounded-lg border-2 px-3 text-lg font-semibold text-slate-400">
-              {booking.data?.car_plate}
+              {hosting.data?.car_plate}
             </h3>
             <h3 className="mt-1 w-max rounded-lg border-2 border-slate-400 px-3 text-lg font-semibold text-slate-500">
-              Host Initial Price : RM {booking.data.price}
+              Your Initial Price : RM {hosting.data.price}
             </h3>
           </div>
           <div className="flex flex-col md:items-end">
             <BookingStatusBadge
-              badgeID={booking.data.bargain_status_id}
-              badgeType={booking.data.ori_bargain_name}
+              badgeID={hosting.data.bargain_status_id}
+              badgeType={hosting.data.ori_bargain_name}
             />
-            {booking.data.bargain_status_id === 2 ||
-            booking.data.bargain_status_id === 4 ? (
+            {hosting.data.bargain_status_id === 2 ||
+            hosting.data.bargain_status_id === 4 ? (
               <BookingStatusBadge badgeID={7} badgeType={"Pending Payment"} />
             ) : (
               <></>
@@ -145,7 +138,7 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
               <IoLocationOutline className="text-2xl text-brandprimary" />
               <h2 className="text-xl font-bold text-brandprimary">Location</h2>
             </div>
-            <div>{booking.data.location}</div>
+            <div>{hosting.data.location}</div>
           </div>
           <div className="flex flex-col gap-2 rounded-2xl bg-slate-50 px-4 py-3 drop-shadow-sm">
             <div className="flex items-center justify-start gap-2">
@@ -181,8 +174,8 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
                         Save
                       </h2>
                     </Button>
-                  ) : booking.data.ori_bargain_status_id === 0 ||
-                    booking.data.ori_bargain_status_id === 1 ? (
+                  ) : hosting.data.ori_bargain_status_id === 0 ||
+                    hosting.data.ori_bargain_status_id === 1 ? (
                     <Button
                       variant="ghost"
                       onClick={() => {
@@ -224,7 +217,7 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
                   </div>
                 ) : (
                   <h2 className="text-lg font-bold">
-                    RM {booking.data.last_bargain_amount}{" "}
+                    RM {hosting.data.last_bargain_amount}{" "}
                     <span className="text-sm font-bold text-brandprimary">
                       /day
                     </span>
@@ -234,8 +227,8 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
             </div>
           </form>
         </div>
-        <BookingAcceptReject
-          booking={booking}
+        <HostingAcceptReject
+          hosting={hosting}
           jwttoken={Cookies.get("JWT_TOKEN")}
           userlogingdata={Cookies.get("USER_LOGIN_DATA")}
           ableToSave={ableToSave}
@@ -245,4 +238,4 @@ const BookingDetailListing: React.FC<BookingDetailProps> = ({ booking }) => {
   );
 };
 
-export default BookingDetailListing;
+export default HostingDetailListing;

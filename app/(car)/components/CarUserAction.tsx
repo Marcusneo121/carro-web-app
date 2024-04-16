@@ -146,6 +146,15 @@ const CarUserAction = () => {
             MY BOOKING
           </h3>
         </Link>
+        <Link href="/myhost" className="">
+          <h3
+            className="relative inline cursor-pointer text-lg font-bold text-white before:absolute before:-bottom-1 before:block before:h-[2px] 
+            before:w-full before:origin-bottom-right before:scale-x-0 before:bg-white 
+            before:transition before:duration-300 before:ease-in-out hover:font-extrabold hover:before:origin-bottom-left hover:before:scale-x-100"
+          >
+            MY HOST
+          </h3>
+        </Link>
       </div>
 
       <div>
@@ -264,6 +273,15 @@ const CarUserAction = () => {
             before:transition before:duration-300 before:ease-in-out hover:font-extrabold hover:before:origin-bottom-left hover:before:scale-x-100"
             >
               MY BOOKING
+            </h3>
+          </Link>
+          <Link href="/myhost" className="">
+            <h3
+              className="relative inline cursor-pointer text-lg font-bold text-white before:absolute before:-bottom-1 before:block before:h-[2px] 
+            before:w-full before:origin-bottom-right before:scale-x-0 before:bg-white 
+            before:transition before:duration-300 before:ease-in-out hover:font-extrabold hover:before:origin-bottom-left hover:before:scale-x-100"
+            >
+              MY HOST
             </h3>
           </Link>
           <div className={`flex flex-col items-center gap-10`}>

@@ -1,31 +1,25 @@
 import { Button } from "@/components/ui/button";
+import { updateBargainingHost } from "@/services/booking";
 import {
   ILoginJWTData,
   IMyBookingDetail,
   INormalApiResponse,
-  IUpdateBargaining,
 } from "@/types/api_index";
-import React, { useState } from "react";
-import Cookies from "js-cookie";
-import { FaInfoCircle } from "react-icons/fa";
-import { parse } from "path";
-import { updateBargainingGuest } from "@/services/booking";
-import { AiOutlineLoading3Quarters } from "react-icons/ai";
-import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "react-hot-toast";
+import { AiOutlineLoading3Quarters } from "react-icons/ai";
+import { FaInfoCircle } from "react-icons/fa";
 
-interface BookingAcceptRejectProps {
-  booking: IMyBookingDetail;
+interface HostingAcceptRejectProps {
+  hosting: IMyBookingDetail;
   jwttoken?: string;
   userlogingdata?: string;
   ableToSave: boolean;
 }
 
-export interface InputProps
-  extends React.InputHTMLAttributes<HTMLInputElement> {}
-
-const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
-  booking,
+const HostingAcceptReject: React.FC<HostingAcceptRejectProps> = ({
+  hosting,
   jwttoken,
   userlogingdata,
   ableToSave,
@@ -37,10 +31,11 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
 
   const apiAcceptRejectSuccess = async (action: string) => {
     try {
-      const acceptRejectBargain: INormalApiResponse = await updateBargainingGuest({
-        bargain_id: booking.data.ori_bargain_id,
-        action_type: action,
-      });
+      const acceptRejectBargain: INormalApiResponse =
+        await updateBargainingHost({
+          bargain_id: hosting.data.ori_bargain_id,
+          action_type: action,
+        });
 
       if (acceptRejectBargain.status === "success") {
         return true;
@@ -62,7 +57,7 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
 
       if (acceptAction === true) {
         toast.success(
-          "You had accepted the booking bargain. Reloading and please proceed to payment.",
+          "You had accepted the booking bargain. We will let the guest know. Reloading page....",
           { duration: 2000 },
         );
         await new Promise((resolve) => setTimeout(resolve, 3000));
@@ -133,98 +128,29 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
     const userLoginCookies: ILoginJWTData = JSON.parse(userlogingdata);
 
     if (
-      booking.data.ori_bargain_status_id === 0 &&
-      booking.data.last_bargain_user === userLoginCookies.data?.user.id
+      hosting.data.ori_bargain_status_id === 0 &&
+      hosting.data.last_bargain_user === userLoginCookies.data?.user.id
     ) {
       //First Rent Request and Last Bargain ID is Requestor
       return <></>;
     } else if (
-      booking.data.ori_bargain_status_id === 1 &&
-      booking.data.last_bargain_user === userLoginCookies.data?.user.id
+      hosting.data.ori_bargain_status_id === 1 &&
+      hosting.data.last_bargain_user === userLoginCookies.data?.user.id
     ) {
       //Bargaining with owner and Last Bargain ID is Requestor
       return <></>;
-    } else if (booking.data.ori_bargain_status_id === 2) {
-      //Host Accepted bargain price, show payment
-      return (
-        <div className="mt-4">
-          <div className="flex flex-row items-end justify-between gap-2">
-            <div>
-              <h3 className="text-lg font-bold text-slate-500">Total :</h3>
-              <h1 className="text-2xl font-extrabold">
-                RM{" "}
-                {parseInt(booking.data.last_bargain_amount) *
-                  booking.data.days_of_rental}
-              </h1>
-              <div className="text-sm font-bold italic text-slate-400">
-                RM {parseInt(booking.data.last_bargain_amount)} x{" "}
-                {booking.data.days_of_rental} day(s)
-              </div>
-            </div>
-
-            <Button
-              className="text-md h-12 w-40 rounded-lg bg-brandprimary font-bold text-white hover:bg-brandprimary"
-              onClick={() => {
-                const totalAmount = (
-                  parseInt(booking.data.last_bargain_amount) *
-                  booking.data.days_of_rental
-                ).toString();
-                const bargainIDData = booking.data.ori_bargain_id;
-                const rentaltransactionidData = booking.data.transaction_id;
-                router.push(
-                  `/payment?bargainid=${bargainIDData}&rentaltransactionid=${rentaltransactionidData}`,
-                );
-              }}
-            >
-              Pay
-            </Button>
-          </div>
-        </div>
-      );
-    } else if (booking.data.ori_bargain_status_id === 3) {
+    } else if (hosting.data.ori_bargain_status_id === 2) {
+      return <></>;
+    } else if (hosting.data.ori_bargain_status_id === 3) {
       //Host Rejected
       return <></>;
-    } else if (booking.data.ori_bargain_status_id === 4) {
-      //Guest Accepted bargain price, show payment
-      return (
-        <div className="mt-4">
-          <div className="flex flex-row items-end justify-between gap-2 px-2">
-            <div>
-              <h3 className="text-lg font-bold text-slate-500">Total :</h3>
-              <h1 className="text-2xl font-extrabold">
-                RM{" "}
-                {parseInt(booking.data.last_bargain_amount) *
-                  booking.data.days_of_rental}
-              </h1>
-              <div className="text-sm font-bold italic text-slate-400">
-                RM {parseInt(booking.data.last_bargain_amount)} x{" "}
-                {booking.data.days_of_rental} day(s)
-              </div>
-            </div>
-
-            <Button
-              className="text-md h-12 w-40 rounded-lg bg-brandprimary font-bold text-white hover:bg-brandprimary"
-              onClick={() => {
-                const totalAmount = (
-                  parseInt(booking.data.last_bargain_amount) *
-                  booking.data.days_of_rental
-                ).toString();
-                const bargainIDData = booking.data.ori_bargain_id;
-                const rentaltransactionidData = booking.data.transaction_id;
-                router.push(
-                  `/payment?bargainid=${bargainIDData}&rentaltransactionid=${rentaltransactionidData}`,
-                );
-              }}
-            >
-              Pay
-            </Button>
-          </div>
-        </div>
-      );
-    } else if (booking.data.ori_bargain_status_id === 5) {
+    } else if (hosting.data.ori_bargain_status_id === 4) {
+      //Guest Accepted
+      return <></>;
+    } else if (hosting.data.ori_bargain_status_id === 5) {
       //Guest Rejected
       return <></>;
-    } else if (booking.data.ori_bargain_status_id === 6) {
+    } else if (hosting.data.ori_bargain_status_id === 6) {
       //Booking paid, business completed
       return <></>;
     } else {
@@ -278,4 +204,4 @@ const BookingAcceptReject: React.FC<BookingAcceptRejectProps> = ({
   }
 };
 
-export default BookingAcceptReject;
+export default HostingAcceptReject;

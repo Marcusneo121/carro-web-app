@@ -10,7 +10,7 @@ const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
   title: "Carro",
-  description: "My Booking",
+  description: "My Host",
 };
 
 export default function Layout({

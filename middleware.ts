@@ -6,6 +6,7 @@ const protectedRoutes = [
   "/car",
   "/mybooking",
   "/mybooking/",
+  "/myhost",
   "/payment",
 ];
 
