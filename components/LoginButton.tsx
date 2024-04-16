@@ -40,12 +40,12 @@ const LoginButton = () => {
       const parsedUserData: ILoginJWTData = JSON.parse(getLoginDataCookies);
 
       if (
-        parsedUserData.data.profile.profile_image !== "-" &&
-        parsedUserData.data.profile.profile_image !== null
+        parsedUserData.data?.profile.profile_image !== "-" &&
+        parsedUserData.data?.profile.profile_image !== null
       ) {
         console.log("is not null");
-        console.log(parsedUserData.data.profile.profile_image);
-        setProfileImageURL(parsedUserData.data.profile.profile_image);
+        console.log(parsedUserData.data?.profile.profile_image);
+        setProfileImageURL(parsedUserData.data?.profile.profile_image);
       } else {
         console.log("is null");
         setProfileImageURL("-");
@@ -99,11 +99,11 @@ const LoginButton = () => {
           variant="outline"
           className="rounded-full border-2 bg-transparent px-10 py-6 text-lg font-bold text-white hover:text-brandprimary"
         >
-          <Link href="/login">LOGIN</Link>
+          <Link href="/login-new">LOGIN</Link>
         </Button>
       ) : (
         <div className="flex flex-col items-center justify-center gap-12 lg:flex-row">
-          <Link href="/cars">
+          <Link href="/car">
             <h3
               className="relative inline cursor-pointer text-lg font-bold text-white before:absolute before:-bottom-1 before:block before:h-[2px] 
 before:w-full before:origin-bottom-right before:scale-x-0 before:bg-white 

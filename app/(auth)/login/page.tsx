@@ -1,4 +1,4 @@
-"use client";
+// "use client";
 
 import { loginAction } from "@/lib/actions/auth_action";
 import { login } from "@/services/auth";
@@ -17,6 +17,7 @@ import { FiEyeOff } from "react-icons/fi";
 import AuthPageHeader from "../components/AuthPageHeader";
 import { DynamicAlertDialog } from "../components/DynamicAlertDialog";
 import { getCookie, setCookie, hasCookie, deleteCookie } from "cookies-next";
+import LoginForm from "../components/LoginForm";
 
 const Login = () => {
   // const [formData, setFormData] = useState({
@@ -32,73 +33,73 @@ const Login = () => {
   //   }
   // }, []);
 
-  const router = useRouter();
-  const [username, setUsername] = useState<string>("");
-  const [password, setPassword] = useState<string>("");
-  const [openDialog, setOpenDialog] = useState<boolean>(false);
-  const [openSpinner, setOpenSpinner] = useState<boolean>(false);
-  const [showPassword, setShowPassword] = useState<boolean>(false);
-  const [loginData, setloginData] = useState<ILoginJWTData>();
-  const currentDate: Date = new Date();
+  // const router = useRouter();
+  // const [username, setUsername] = useState<string>("");
+  // const [password, setPassword] = useState<string>("");
+  // const [openDialog, setOpenDialog] = useState<boolean>(false);
+  // const [openSpinner, setOpenSpinner] = useState<boolean>(false);
+  // const [showPassword, setShowPassword] = useState<boolean>(false);
+  // const [loginData, setloginData] = useState<ILoginJWTData>();
+  // const currentDate: Date = new Date();
 
-  const [openErrorDynamicDialog, setOpenErrorDynamicDialog] =
-    useState<boolean>(false);
-  const [dialogErrorMessage, setDialogErrorMessage] = useState<string>("");
-  const [dialogErrorTitle, setDialogErrorTitle] = useState<string>("");
+  // const [openErrorDynamicDialog, setOpenErrorDynamicDialog] =
+  //   useState<boolean>(false);
+  // const [dialogErrorMessage, setDialogErrorMessage] = useState<string>("");
+  // const [dialogErrorTitle, setDialogErrorTitle] = useState<string>("");
 
-  const dynamicErrorDialogSetter = (
-    dialogTitle: string,
-    dialogMessage: string,
-    openDialog: boolean,
-  ) => {
-    setDialogErrorMessage(dialogMessage);
-    setDialogErrorTitle(dialogTitle);
-    setOpenErrorDynamicDialog(openDialog);
-  };
+  // const dynamicErrorDialogSetter = (
+  //   dialogTitle: string,
+  //   dialogMessage: string,
+  //   openDialog: boolean,
+  // ) => {
+  //   setDialogErrorMessage(dialogMessage);
+  //   setDialogErrorTitle(dialogTitle);
+  //   setOpenErrorDynamicDialog(openDialog);
+  // };
 
-  const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
-    event.preventDefault();
-    setOpenSpinner(true);
-    try {
-      const loginData: ILoginJWTData = await login({
-        username: username.toString(),
-        password: password.toString(),
-      });
+  // const handleSubmit: FormEventHandler<HTMLFormElement> = async (event) => {
+  //   event.preventDefault();
+  //   setOpenSpinner(true);
+  //   try {
+  //     const loginData: ILoginJWTData = await login({
+  //       username: username.toString(),
+  //       password: password.toString(),
+  //     });
 
-      // console.log(loginData);
+  //     // console.log(loginData);
 
-      setOpenSpinner(false);
-      if (loginData.status === "ok") {
-        router.push("/");
-      } else if (loginData.status === "error") {
-        console.log("come in error");
-        dynamicErrorDialogSetter(
-          "Login failed",
-          loginData.message.toString(),
-          true,
-        );
-      } else {
-        console.log("come in error else");
-        dynamicErrorDialogSetter(
-          "Login failed",
-          "Something went wrong. Please try again.",
-          true,
-        );
-      }
+  //     setOpenSpinner(false);
+  //     if (loginData.status === "ok") {
+  //       router.push("/");
+  //     } else if (loginData.status === "error") {
+  //       console.log("come in error");
+  //       dynamicErrorDialogSetter(
+  //         "Login failed",
+  //         loginData.message.toString(),
+  //         true,
+  //       );
+  //     } else {
+  //       console.log("come in error else");
+  //       dynamicErrorDialogSetter(
+  //         "Login failed",
+  //         "Something went wrong. Please try again.",
+  //         true,
+  //       );
+  //     }
 
-      // currentDate.getUTCFullYear().toLocaleString();
-      // const checkToken = Cookies.get("JWT_TOKEN");
-      // if (checkToken !== undefined) {
-      //   setOpenSpinner(false);
-      //   router.push("/");
-      // }
-      // alert(JSON.stringify(loginData));
-    } catch (error) {
-      // alert(error);
-      setOpenSpinner(false);
-      setOpenDialog(true);
-    }
-  };
+  //     // currentDate.getUTCFullYear().toLocaleString();
+  //     // const checkToken = Cookies.get("JWT_TOKEN");
+  //     // if (checkToken !== undefined) {
+  //     //   setOpenSpinner(false);
+  //     //   router.push("/");
+  //     // }
+  //     // alert(JSON.stringify(loginData));
+  //   } catch (error) {
+  //     // alert(error);
+  //     setOpenSpinner(false);
+  //     setOpenDialog(true);
+  //   }
+  // };
   // h-[calc(100%-15%)]
   return (
     <div className="flex h-screen flex-col bg-brandprimary">
@@ -117,7 +118,51 @@ const Login = () => {
           </div>
 
           <div className="flex w-[400px] items-center justify-center max-md:w-[340px]">
-            <form onSubmit={handleSubmit} className="w-full px-10 max-lg:px-5">
+            <LoginForm />
+          </div>
+        </div>
+      </div>
+    </div>
+    // <div className="flex h-screen w-full items-center justify-center">
+    //   <form onSubmit={handleSubmit}>
+    //     <div className="flex h-full flex-col items-center justify-center gap-10">
+    //       <input
+    //         type="text"
+    //         id="username"
+    //         name="username"
+    //         className="h-10 bg-slate-300"
+    //         placeholder="username"
+    //         onChange={(e) => {
+    //           setUsername(e.target.value.toString());
+    //         }}
+    //       />
+    //       <input
+    //         type="text"
+    //         id="password"
+    //         name="password"
+    //         className="h-10 bg-slate-300"
+    //         placeholder="password"
+    //         onChange={(e) => {
+    //           setPassword(e.target.value.toString());
+    //         }}
+    //       />
+    //       <button type="submit">LOGIN</button>
+    //     </div>
+    //   </form>
+    // </div>
+  );
+};
+
+export default Login;
+
+{
+  /* <AlertAuthDialog open={openDialog} setOpen={setOpenDialog} /> */
+}
+
+// WORKING CODE BUT CLIENT COMPONENTS START //
+
+{
+  /* <form onSubmit={handleSubmit} className="w-full px-10 max-lg:px-5">
               <div className="flex flex-col gap-16">
                 <div className="flex flex-col items-center justify-center gap-6">
                   <div className="flex w-full flex-col gap-2">
@@ -187,7 +232,6 @@ const Login = () => {
                     LOGIN
                   </Button>
                   <LoadingDialog open={openSpinner} setOpen={setOpenSpinner} />
-                  {/* <AlertAuthDialog open={openDialog} setOpen={setOpenDialog} /> */}
                   <DynamicAlertDialog
                     open={openErrorDynamicDialog}
                     setOpen={setOpenErrorDynamicDialog}
@@ -206,42 +250,10 @@ const Login = () => {
                   </div>
                 </div>
               </div>
-            </form>
-          </div>
-        </div>
-      </div>
-    </div>
-    // <div className="flex h-screen w-full items-center justify-center">
-    //   <form onSubmit={handleSubmit}>
-    //     <div className="flex h-full flex-col items-center justify-center gap-10">
-    //       <input
-    //         type="text"
-    //         id="username"
-    //         name="username"
-    //         className="h-10 bg-slate-300"
-    //         placeholder="username"
-    //         onChange={(e) => {
-    //           setUsername(e.target.value.toString());
-    //         }}
-    //       />
-    //       <input
-    //         type="text"
-    //         id="password"
-    //         name="password"
-    //         className="h-10 bg-slate-300"
-    //         placeholder="password"
-    //         onChange={(e) => {
-    //           setPassword(e.target.value.toString());
-    //         }}
-    //       />
-    //       <button type="submit">LOGIN</button>
-    //     </div>
-    //   </form>
-    // </div>
-  );
-};
+            </form> */
+}
 
-export default Login;
+// WORKING BUT CLIENT COMPONENTS END //
 
 //Try with server actions
 // return (

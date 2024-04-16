@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  reactStrictMode: false,
   images: {
     remotePatterns: [
       {
@@ -7,6 +8,12 @@ const nextConfig = {
         hostname: "storage.googleapis.com",
         port: "",
         pathname: "/download/storage/v1/b/carro-backend-storage/o/**",
+      },
+      {
+        protocol: "https",
+        hostname: "firebasestorage.googleapis.com",
+        port: "",
+        pathname: "/v0/b/p2p-car-sharing.appspot.com/o/**",
       },
       {
         protocol: "https",
