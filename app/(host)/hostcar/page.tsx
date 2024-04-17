@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import PriceLocationPage from "../components/hostcarpages/PriceLocationAvailabilityPage";
 import CarImagePage from "../components/hostcarpages/CarImagePage";
 import NextPreviousSubmitButton from "../components/NextPreviousSubmitButton";
+import HostCarConfirmationPage from "../components/hostcarpages/HostCarConfirmationPage";
 
 const HostPage = () => {
   const [page, setPage] = useState<number>(0);
@@ -16,8 +17,10 @@ const HostPage = () => {
       return <CarDetailsPage />;
     } else if (page === 1) {
       return <PriceLocationPage />;
-    } else {
+    } else if (page === 2) {
       return <CarImagePage />;
+    } else {
+      return <HostCarConfirmationPage />;
     }
   };
 

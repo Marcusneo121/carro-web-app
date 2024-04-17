@@ -3,7 +3,7 @@ import React from "react";
 
 const PriceLocationPage = () => {
   return (
-    <div className="w-full rounded-2xl bg-slate-100">
+    <div className="w-full rounded-2xl bg-slate-50">
       <div className="flex flex-col items-center gap-4 px-8 py-6">
         <div className="w-full">
           <div className="flex flex-col gap-2">

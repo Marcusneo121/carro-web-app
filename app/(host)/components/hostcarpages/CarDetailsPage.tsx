@@ -6,7 +6,7 @@ import { IoCarOutline } from "react-icons/io5";
 
 const CarDetailsPage = () => {
   return (
-    <div className="w-full rounded-2xl bg-slate-100">
+    <div className="w-full rounded-2xl bg-slate-50">
       <div className="px-8 py-6">
         <div className="flex flex-col gap-6">
           <div className="flex flex-col gap-2">

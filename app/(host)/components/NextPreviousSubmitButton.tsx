@@ -29,7 +29,7 @@ const NextPreviousSubmitButton: React.FC<NextPreviousSubmitButtonProps> = ({
       <Button
         className="text-md h-12 w-28 rounded-lg bg-brandprimary font-bold text-white hover:bg-brandprimary"
         onClick={() => {
-          if (page !== 2) {
+          if (page !== 3) {
             setPage((currPage: any) => currPage + 1);
           }
         }}
