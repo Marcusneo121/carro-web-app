@@ -7,77 +7,120 @@ import { IoClose } from "react-icons/io5";
 export interface ImageUploadInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
-  onClick: () => void;
+  identifier: string;
   carData: AddHostCarData | undefined;
   setCarData: (carData: AddHostCarData) => void;
+  onClickForClose: () => void;
+  //   onClick: () => void;
+  //   onSelectCarData: () => void;
 }
 
 const ImageUploadFileInput = React.forwardRef<
   HTMLInputElement,
   ImageUploadInputProps
->(({ placeholder, type, ...props }, ref) => {
-  const [selectedImage, setSelectedImage] = useState<string | undefined>();
+>(
+  (
+    {
+      placeholder,
+      identifier,
+      carData,
+      setCarData,
+      onClickForClose,
+      type,
+      ...props
+    },
+    ref,
+  ) => {
+    const [selectedImage, setSelectedImage] = useState<string | undefined>();
 
-  const handleImageChange = (event: any) => {
-    const file = event.target.files[0];
-    if (file) {
-      setSelectedImage(URL.createObjectURL(event.target.files[0]));
-      //   const reader = new FileReader();
-      //   reader.onload = (e) => {
-      //     const imageData = event.target.result;
-      //     console.log("imageData: ", imageData);
-      //     const dataURL = `data:image/jpeg;base64,${btoa(imageData)}`;
-      //     console.log("dataURL: ", dataURL);
-      //     setSelectedImage(dataURL);
-      //   };
-      //   reader.readAsBinaryString(file);
-    }
-  };
+    const handleImageChange = (event: any) => {
+      const file: File = event.target.files[0];
+      if (file) {
+        setSelectedImage(URL.createObjectURL(event.target.files[0]));
+        switch (identifier) {
+          case "ext1": {
+            setCarData({ ...carData, carMainPic: file });
+            break;
+          }
+          case "ext2": {
+            setCarData({ ...carData, carImageOne: file });
+            break;
+          }
+          case "ext3": {
+            setCarData({ ...carData, carImageTwo: file });
+            break;
+          }
+          case "int1": {
+            setCarData({ ...carData, carImageThree: file });
+            break;
+          }
+          case "int2": {
+            setCarData({ ...carData, carImageFour: file });
+            break;
+          }
+          default: {
+            break;
+          }
+        }
 
-  if (selectedImage !== undefined) {
-    return (
-      <div className="relative">
-        <div
-          className="absolute -right-3 -top-2 rounded-full bg-brandprimary p-1"
-          onClick={() => {
-            setSelectedImage(undefined);
-          }}
-        >
-          <IoClose className="text-white md:text-2xl" />
-        </div>
-        <img
-          alt="preview image"
-          src={selectedImage}
-          className="h-[80px] w-[80px] rounded-2xl object-cover md:h-[120px] md:w-[120px]"
-        />
-      </div>
-    );
-  } else {
-    return (
-      <div
-        className="flex h-[80px] w-[80px] flex-col items-center justify-center rounded-2xl border-2 border-purple-200 bg-purple-50 md:h-[120px] md:w-[120px]"
-        onClick={props.onClick}
-      >
-        <div>
-          <div className="flex flex-col items-center justify-center">
-            <IoIosAdd className="text-[25px] text-brandprimary md:text-[40px]" />{" "}
-            <h4 className="text-[10px] font-extrabold text-brandprimary md:text-xs">
-              {placeholder}
-            </h4>
+        //   const reader = new FileReader();
+        //   reader.onload = (e) => {
+        //     const imageData = event.target.result;
+        //     console.log("imageData: ", imageData);
+        //     const dataURL = `data:image/jpeg;base64,${btoa(imageData)}`;
+        //     console.log("dataURL: ", dataURL);
+        //     setSelectedImage(dataURL);
+        //   };
+        //   reader.readAsBinaryString(file);
+      }
+    };
+
+    if (selectedImage !== undefined) {
+      return (
+        <div className="relative">
+          <div
+            className="absolute -right-3 -top-2 rounded-full bg-brandprimary p-1"
+            onClick={() => {
+              setSelectedImage(undefined);
+              onClickForClose();
+            }}
+          >
+            <IoClose className="text-white md:text-2xl" />
           </div>
-          <input
-            type="file"
-            accept="image/*"
-            ref={ref}
-            {...props}
-            style={{ display: "none" }}
-            onChange={handleImageChange}
+          <img
+            alt="preview image"
+            src={selectedImage}
+            className="h-[80px] w-[80px] rounded-2xl object-cover md:h-[120px] md:w-[120px]"
           />
         </div>
-      </div>
-    );
-  }
-});
+      );
+    } else {
+      return (
+        <div
+          className="flex h-[80px] w-[80px] flex-col items-center justify-center rounded-2xl border-2 border-purple-200 bg-purple-50 md:h-[120px] md:w-[120px]"
+          onClick={props.onClick}
+        >
+          <div>
+            <div className="flex flex-col items-center justify-center">
+              <IoIosAdd className="text-[25px] text-brandprimary md:text-[40px]" />{" "}
+              <h4 className="text-[10px] font-extrabold text-brandprimary md:text-xs">
+                {placeholder}
+              </h4>
+            </div>
+            <input
+              type="file"
+              accept="image/*"
+              ref={ref}
+              {...props}
+              style={{ display: "none" }}
+              onChange={handleImageChange}
+            />
+          </div>
+        </div>
+      );
+    }
+  },
+);
 
 export default ImageUploadFileInput;
 

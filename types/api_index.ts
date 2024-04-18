@@ -281,21 +281,22 @@ export interface PaymentReferenceData {
 }
 
 export interface AddHostCarData {
-  color: string;
-  engineCapacity: string;
-  yearMade: string;
-  seat: string;
-  location: string;
-  carMainPic: File;
-  carImageOne: File;
-  carImageTwo: File;
-  carImageThree: File;
-  carImageFour: File;
-  carPlate: string;
-  price: string;
-  availableFromDate: string;
-  availableToDate: string;
-  isElectric: boolean;
+  carName?: string;
+  color?: string;
+  engineCapacity?: string;
+  yearMade?: string;
+  seat?: string;
+  location?: string;
+  carMainPic?: File;
+  carImageOne?: File;
+  carImageTwo?: File;
+  carImageThree?: File;
+  carImageFour?: File;
+  carPlate?: string;
+  price?: string;
+  availableFromDate?: string;
+  availableToDate?: string;
+  isElectric?: boolean;
 }
 
 // String? carName;

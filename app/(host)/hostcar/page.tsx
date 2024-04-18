@@ -9,23 +9,56 @@ import PriceLocationPage from "../components/hostcarpages/PriceLocationAvailabil
 import CarImagePage from "../components/hostcarpages/CarImagePage";
 import NextPreviousSubmitButton from "../components/NextPreviousSubmitButton";
 import HostCarConfirmationPage from "../components/hostcarpages/HostCarConfirmationPage";
+import { AddHostCarData } from "@/types/api_index";
 
 const HostPage = () => {
   const [page, setPage] = useState<number>(0);
+  const [carData, setCarData] = useState<AddHostCarData | undefined>();
+
   const PageDisplay = () => {
     if (page === 0) {
-      return <CarDetailsPage />;
+      return (
+        <CarDetailsPage
+          page={page}
+          setPage={setPage}
+          carData={carData}
+          setCarData={setCarData}
+        />
+      );
     } else if (page === 1) {
-      return <PriceLocationPage />;
+      return (
+        <PriceLocationPage
+          page={page}
+          setPage={setPage}
+          carData={carData}
+          setCarData={setCarData}
+        />
+      );
     } else if (page === 2) {
-      return <CarImagePage />;
+      return (
+        <CarImagePage
+          page={page}
+          setPage={setPage}
+          carData={carData}
+          setCarData={setCarData}
+        />
+      );
+    } else if (page === 3) {
+      return (
+        <HostCarConfirmationPage
+          page={page}
+          setPage={setPage}
+          carData={carData}
+          setCarData={setCarData}
+        />
+      );
     } else {
-      return <HostCarConfirmationPage />;
+      return <></>;
     }
   };
 
   return (
-    <div className="flex min-h-[800px] items-center justify-center px-8 py-10 lg:px-20">
+    <div className="flex min-h-[800px] md:items-center justify-center px-8 py-10 lg:px-20">
       <div className="flex w-[550px] flex-col gap-3 max-sm:w-[350px]">
         <div className="ml-1 flex items-center justify-start gap-2">
           <IoCarOutline className="text-3xl text-brandprimary" />
@@ -36,7 +69,6 @@ const HostPage = () => {
         <div>{PageDisplay()}</div>
         {/* <CarDetailsPage /> */}
         {/* <PriceLocationPage /> */}
-        <NextPreviousSubmitButton page={page} setPage={setPage} />
       </div>
     </div>
   );
