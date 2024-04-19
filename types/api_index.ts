@@ -280,7 +280,7 @@ export interface PaymentReferenceData {
   payment_reference_id: string;
 }
 
-export interface AddHostCarData {
+export interface IAddHostCarData {
   carName?: string;
   color?: string;
   engineCapacity?: string;

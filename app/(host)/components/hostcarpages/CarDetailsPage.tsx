@@ -6,13 +6,13 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
 import NextPreviousSubmitButton from "../NextPreviousSubmitButton";
-import { AddHostCarData } from "@/types/api_index";
+import { IAddHostCarData } from "@/types/api_index";
 
 interface NextPreviousSubmitButtonProps {
   page: number;
   setPage: (currPage: any) => void;
-  carData: AddHostCarData | undefined;
-  setCarData: (carData: AddHostCarData) => void;
+  carData: IAddHostCarData | undefined;
+  setCarData: (carData: IAddHostCarData) => void;
 }
 
 const CarDetailsPage: React.FC<NextPreviousSubmitButtonProps> = ({

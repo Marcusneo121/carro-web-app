@@ -1,7 +1,7 @@
 import { Separator } from "@/components/ui/separator";
 import React, { useEffect } from "react";
 import NextPreviousSubmitButton from "../NextPreviousSubmitButton";
-import { AddHostCarData } from "@/types/api_index";
+import { IAddHostCarData } from "@/types/api_index";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { SubmitHandler, useForm } from "react-hook-form";
@@ -15,8 +15,8 @@ import toast from "react-hot-toast";
 interface NextPreviousSubmitButtonProps {
   page: number;
   setPage: (currPage: any) => void;
-  carData: AddHostCarData | undefined;
-  setCarData: (carData: AddHostCarData) => void;
+  carData: IAddHostCarData | undefined;
+  setCarData: (carData: IAddHostCarData) => void;
 }
 const PriceLocationPage: React.FC<NextPreviousSubmitButtonProps> = ({
   page,

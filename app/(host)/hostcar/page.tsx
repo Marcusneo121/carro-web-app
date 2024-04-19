@@ -9,11 +9,11 @@ import PriceLocationPage from "../components/hostcarpages/PriceLocationAvailabil
 import CarImagePage from "../components/hostcarpages/CarImagePage";
 import NextPreviousSubmitButton from "../components/NextPreviousSubmitButton";
 import HostCarConfirmationPage from "../components/hostcarpages/HostCarConfirmationPage";
-import { AddHostCarData } from "@/types/api_index";
+import { IAddHostCarData } from "@/types/api_index";
 
 const HostPage = () => {
   const [page, setPage] = useState<number>(0);
-  const [carData, setCarData] = useState<AddHostCarData | undefined>();
+  const [carData, setCarData] = useState<IAddHostCarData | undefined>();
 
   const PageDisplay = () => {
     if (page === 0) {

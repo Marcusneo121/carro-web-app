@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import React, { useEffect, useRef, useState } from "react";
 import ImageUploadFileInput from "./ImageUploadFileInput";
-import { AddHostCarData } from "@/types/api_index";
+import { IAddHostCarData } from "@/types/api_index";
 import { Separator } from "@/components/ui/separator";
 import NextPreviousSubmitButton from "../NextPreviousSubmitButton";
 import { toast } from "react-hot-toast";
@@ -11,8 +11,8 @@ import { toast } from "react-hot-toast";
 interface NextPreviousSubmitButtonProps {
   page: number;
   setPage: (currPage: any) => void;
-  carData: AddHostCarData | undefined;
-  setCarData: (carData: AddHostCarData) => void;
+  carData: IAddHostCarData | undefined;
+  setCarData: (carData: IAddHostCarData) => void;
 }
 
 const CarImagePage: React.FC<NextPreviousSubmitButtonProps> = ({

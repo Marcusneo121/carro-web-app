@@ -1,17 +1,20 @@
 "use client";
 
-import { AddHostCarData } from "@/types/api_index";
+import { IAddHostCarData, INormalApiResponse } from "@/types/api_index";
 import React, { useEffect, useState } from "react";
 import NextPreviousSubmitButton from "../NextPreviousSubmitButton";
 import { Separator } from "@/components/ui/separator";
 import CarouselExteriorInterior from "./CarouselExteriorInterior";
 import { dateFormatterGMT } from "@/utils/utils";
+import { addCar } from "@/services/cars";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 interface NextPreviousSubmitButtonProps {
   page: number;
   setPage: (currPage: any) => void;
-  carData: AddHostCarData | undefined;
-  setCarData: (carData: AddHostCarData) => void;
+  carData: IAddHostCarData | undefined;
+  setCarData: (carData: IAddHostCarData) => void;
 }
 
 const HostCarConfirmationPage: React.FC<NextPreviousSubmitButtonProps> = ({
@@ -20,7 +23,9 @@ const HostCarConfirmationPage: React.FC<NextPreviousSubmitButtonProps> = ({
   carData,
   setCarData,
 }) => {
+  const router = useRouter();
   const [backDialog, setBackDialog] = useState<boolean>(false);
+  const [isSubmitting, setIsSubmitting] = useState<boolean>(false);
   const fromDate = dateFormatterGMT(carData?.availableFromDate);
   const toDate = dateFormatterGMT(carData?.availableToDate);
 
@@ -31,6 +36,27 @@ const HostCarConfirmationPage: React.FC<NextPreviousSubmitButtonProps> = ({
   const onSubmitBack = async () => {
     setBackDialog(true);
     // setPage((currPage: any) => currPage + 1);
+  };
+
+  const onSubmit = async () => {
+    setIsSubmitting(true);
+    try {
+      const addCarData: INormalApiResponse = await addCar(carData!);
+
+      console.log("It is submitting Page 1");
+      if (addCarData.status === "ok") {
+        router.push("/hostcar/host-success");
+      } else {
+        await toast.error("Something went wrong!. Please try again.", {
+          duration: 3000,
+        });
+      }
+    } catch (error) {
+      await toast.error("Something went wrong!. Please try again.", {
+        duration: 3000,
+      });
+    }
+    setIsSubmitting(false);
   };
 
   return (
@@ -72,7 +98,7 @@ const HostCarConfirmationPage: React.FC<NextPreviousSubmitButtonProps> = ({
                     : "Engine Capacity (cc)"}
                 </h1>
                 <h2 className="font-medium text-slate-500">
-                  {carData?.yearMade}
+                  {carData?.engineCapacity}
                 </h2>
               </div>
             </div>
@@ -142,9 +168,7 @@ const HostCarConfirmationPage: React.FC<NextPreviousSubmitButtonProps> = ({
       <NextPreviousSubmitButton
         page={page}
         setPage={setPage}
-        onSubmitAction={() => {
-          console.log("It is submitting Page 1");
-        }}
+        onSubmitAction={() => onSubmit()}
         onPreviousAction={() => {
           setCarData({
             ...carData,
@@ -156,6 +180,7 @@ const HostCarConfirmationPage: React.FC<NextPreviousSubmitButtonProps> = ({
           });
           return true;
         }}
+        isSubmitting={isSubmitting}
         // onPreviousCustom={() => onSubmitBack()}
       />
       {/* <HostCarConfirmationBackDialog

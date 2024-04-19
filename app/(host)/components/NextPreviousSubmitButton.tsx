@@ -10,6 +10,7 @@ interface NextPreviousSubmitButtonProps {
   onNextAction?: () => boolean;
   onNextCustom?: () => void;
   onPreviousCustom?: () => void;
+  isSubmitting?: boolean;
 }
 
 const NextPreviousSubmitButton: React.FC<NextPreviousSubmitButtonProps> = ({
@@ -20,6 +21,7 @@ const NextPreviousSubmitButton: React.FC<NextPreviousSubmitButtonProps> = ({
   onNextAction,
   onNextCustom,
   onPreviousCustom,
+  isSubmitting,
 }) => {
   const previousButtonAction = () => {
     if (onPreviousAction !== undefined) {
@@ -78,15 +80,15 @@ const NextPreviousSubmitButton: React.FC<NextPreviousSubmitButtonProps> = ({
             </div>
           </Button>
           <Button
-            type="submit"
+            disabled={isSubmitting}
             className="text-md h-12 w-28 rounded-lg bg-brandprimary font-bold text-white hover:bg-brandprimary"
-            // onClick={() => {
-            //   if (onSubmitAction !== undefined) {
-            //     onSubmitAction();
-            //   }
-            // }}
+            onClick={() => {
+              if (onSubmitAction !== undefined) {
+                onSubmitAction();
+              }
+            }}
           >
-            Submit
+            {isSubmitting === true ? "Submitting..." : "Submit"}
           </Button>
         </div>
       );

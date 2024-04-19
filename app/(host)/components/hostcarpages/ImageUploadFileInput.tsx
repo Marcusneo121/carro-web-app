@@ -1,4 +1,4 @@
-import { AddHostCarData } from "@/types/api_index";
+import { IAddHostCarData } from "@/types/api_index";
 import React, { useState } from "react";
 import { IoIosAdd } from "react-icons/io";
 import Image from "next/image";
@@ -8,8 +8,8 @@ export interface ImageUploadInputProps
   extends React.InputHTMLAttributes<HTMLInputElement> {
   placeholder: string;
   identifier: string;
-  carData: AddHostCarData | undefined;
-  setCarData: (carData: AddHostCarData) => void;
+  carData: IAddHostCarData | undefined;
+  setCarData: (carData: IAddHostCarData) => void;
   onClickForClose: () => void;
   //   onClick: () => void;
   //   onSelectCarData: () => void;
