@@ -3,9 +3,10 @@ import Image from "next/image";
 
 const AuthPageHeader = () => {
   return (
-    <div className="bg-brandprimary px-10 max-md:pt-5 md:py-5">
+    <div className="bg-brandprimary px-10 max-md:pt-5 md:pt-5">
       <div className="flex items-center justify-center gap-3 md:justify-start">
-        <div className="relative h-14 w-14 md:h-20 md:w-20">
+        <div className="relative h-14 w-14">
+          {/* md:h-20 md:w-20 */}
           <Image
             alt="carro logo"
             src="/logos/logo-white.png"

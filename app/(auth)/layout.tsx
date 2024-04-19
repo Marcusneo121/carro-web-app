@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import { Nunito as FontSans } from "next/font/google";
 import { cn } from "@/lib/utils";
 import "@/app/globals.css";
-import AuthPageHeader from "./login/components/AuthPageHeader";
+import { CookiesProvider } from "next-client-cookies/server";
+import { Toaster } from "react-hot-toast";
+
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
@@ -17,13 +19,18 @@ export default function Layout({
 }>) {
   return (
     <div
-      className={cn(
-        "h-screen bg-brandprimary font-sans antialiased",
-        fontSans.variable,
-      )}
+      className={cn("bg-brandprimary font-sans antialiased", fontSans.variable)}
     >
-      <AuthPageHeader />
-      {children}
+      <CookiesProvider>{children}</CookiesProvider>
+      <Toaster
+        position="bottom-center"
+        toastOptions={{
+          style: {
+            border: "2px solid #7878F1",
+            padding: "16px",
+          },
+        }}
+      />
     </div>
   );
 }
