@@ -1,6 +1,6 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 
-const { fontFamily } = require("tailwindcss/defaultTheme")
+const { fontFamily } = require("tailwindcss/defaultTheme");
 
 const config = {
   darkMode: ["class"],
@@ -29,6 +29,7 @@ const config = {
           100: "#F5F8FF",
         },
         brandprimary: "#7878F1",
+        brandsecondary: "#E8E3F1",
         bigtextbrandcolor: "#4A4A4A",
         smalltextbrandcolor: "#858585",
         greyishbackground: "#F7F7F7",
@@ -98,4 +99,4 @@ const config = {
   plugins: [require("tailwindcss-animate")],
 } satisfies Config;
 
-export default config
+export default config;

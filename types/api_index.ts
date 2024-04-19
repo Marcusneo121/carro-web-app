@@ -279,3 +279,39 @@ export interface IConfirmPayment {
 export interface PaymentReferenceData {
   payment_reference_id: string;
 }
+
+export interface IAddHostCarData {
+  carName?: string;
+  color?: string;
+  engineCapacity?: string;
+  yearMade?: string;
+  seat?: string;
+  location?: string;
+  carMainPic?: File;
+  carImageOne?: File;
+  carImageTwo?: File;
+  carImageThree?: File;
+  carImageFour?: File;
+  carPlate?: string;
+  price?: string;
+  availableFromDate?: string;
+  availableToDate?: string;
+  isElectric?: boolean;
+}
+
+// String? carName;
+//   String? color;
+//   String? engineCapacity;
+//   String? yearMade;
+//   String? seat;
+//   String? location;
+//   File? carMainPic;
+//   File? carImageOne;
+//   File? carImageTwo;
+//   File? carImageThree;
+//   File? carImageFour;
+//   String? carPlate;
+//   String? price;
+//   DateTime? availableFromDate;
+//   DateTime? availableToDate;
+//   bool? isElectric;
