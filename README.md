@@ -23,13 +23,13 @@ Some pretty basic feature, mainly focus on backend. This is just a showcase.
 
 ## Screenshots
 
-Home | My Booking
+Home | Car List
 --- | ---
-<img src="https://i.ibb.co/NnqxzF7/IMG-1277.png" width="250"/> | ![My Booking](https://i.ibb.co/gr9pkV7/IMG-1278.png)
+<img src="https://i.postimg.cc/CxqBK3fk/Carro.jpg" height="250"/> | <img src="https://i.postimg.cc/6Qz96czC/Carro-12-40pm-04-20.jpg" height="250"/>
 
-Booking Pre Payment Page | My Booking
+Car Detail | Payment (Stripe)
 --- | ---
-![My Booking Detail Page](https://i.ibb.co/6Zy7hX4/IMG-1279.png) | ![Stripe Payment Sheet](https://i.ibb.co/cTVjrk4/IMG-1281.png) 
+<img src="https://i.postimg.cc/43KgZG7R/Carro-12-41pm-04-20.jpg" height="250"/> | <img src="https://i.postimg.cc/0j6nh36J/Carro-2-38pm-04-20.jpg" height="250"/>
 
    
 
