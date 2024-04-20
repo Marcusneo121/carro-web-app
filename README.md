@@ -7,7 +7,7 @@
 
 Carro is a P2P Car Sharing Platform. This platform consist of Web and Mobile version. This repo is the web app developed in Next.js. Backend API is in another repo (link to repo attached below), developed with Node.js (Adonis.js).
 
-However, if I can choose again, I might use React.js + Vite + Typescript. Next.js feels overengineered on some simple things. But overall, Im able to work on it and completed this web-app
+**However, if I can choose again, I might use React.js + Vite + Typescript. Next.js feels overengineered on some simple things. But overall, Im able to work on it and completed this web-app.**
 
 ## Technologies
 
