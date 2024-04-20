@@ -32,7 +32,17 @@ Car Detail | Payment (Stripe)
 --- | ---
 <img src="https://i.postimg.cc/43KgZG7R/Carro-12-41pm-04-20.jpg" height="250"/> | <img src="https://i.postimg.cc/0j6nh36J/Carro-2-38pm-04-20.jpg" height="250"/>
 
-   
+
+## Build & Run
+
+- Clone the app to local
+```bash
+  npm install
+```
+
+```bash
+  npm run dev
+```
 
 
 
