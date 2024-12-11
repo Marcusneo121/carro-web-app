@@ -23,10 +23,11 @@ const nextConfig = {
       {
         protocol: "https",
         hostname: "p2p-makerlab.s3.amazonaws.com",
+        pathname: "/**",
         port: "",
       },
     ],
-    domains: ["p2p-makerlab.s3.amazonaws.com"],
+    domains: [],
     path: "/_next/image",
     loader: "default",
     // domains: ["storage.googleapis.com", "firebasestorage.googleapis.com"],
