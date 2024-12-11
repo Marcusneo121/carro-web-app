@@ -20,6 +20,11 @@ const nextConfig = {
         hostname: "images.unsplash.com",
         port: "",
       },
+      {
+        protocol: "https",
+        hostname: "p2p-makerlab.s3.amazonaws.com",
+        port: "",
+      },
     ],
     // domains: ["storage.googleapis.com", "firebasestorage.googleapis.com"],
   },
