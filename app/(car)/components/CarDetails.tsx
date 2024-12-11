@@ -134,6 +134,7 @@ const CarDetailListing: React.FC<CarDetailProps> = ({ car, owner }) => {
                     style={{ objectFit: "cover" }}
                     src={owner.data.profile_image ?? "/icons/profile.jpg"}
                     className="rounded-full"
+                    unoptimized={true} 
                   />
                 </div>
               )}

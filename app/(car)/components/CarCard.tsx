@@ -33,6 +33,7 @@ const CarCard = ({ car }: CarProps) => {
           objectFit="cover"
           fill
           className="left-0 top-0 h-full w-full rounded-2xl object-cover"
+          unoptimized={true} 
         />
       </div>
       <div className="mt-5 flex w-full flex-col">

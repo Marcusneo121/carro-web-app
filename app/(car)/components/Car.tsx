@@ -19,6 +19,7 @@ const Car: React.FC<CarProps> = ({ car }) => {
           height={20}
           alt="Car image"
           className="rounded-2xl"
+          unoptimized={true} 
         />
       </td>
       <td>{car.car_name}</td>

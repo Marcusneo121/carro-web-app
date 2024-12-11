@@ -34,6 +34,7 @@ const CarDetailsCarousel = ({ carImages }: CarDetailCarouselProps) => {
                 objectFit="cover"
                 fill
                 className="left-0 top-0 h-full w-full rounded-2xl object-cover"
+                unoptimized={true} 
               />
             </div>
           </CarouselItem>

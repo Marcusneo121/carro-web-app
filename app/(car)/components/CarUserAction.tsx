@@ -188,6 +188,7 @@ const CarUserAction = () => {
                         style={{ objectFit: "cover" }}
                         src={profileImageURL ?? "/icons/profile.jpg"}
                         className="rounded-full"
+                        unoptimized={true} 
                       />
                     </div>
                   )}
@@ -301,6 +302,7 @@ const CarUserAction = () => {
                   style={{ objectFit: "cover" }}
                   src={profileImageURL ?? "/icons/profile.jpg"}
                   className="rounded-full"
+                  unoptimized={true} 
                 />
               </div>
             )}
