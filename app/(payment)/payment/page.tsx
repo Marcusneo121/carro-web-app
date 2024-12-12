@@ -115,14 +115,14 @@ export default function Payment({
         <div className="mb-5 mt-10 flex items-center justify-center gap-2">
           <div className="relative h-16 w-16 md:h-20 md:w-20">
             <Image
-              alt="carro logo"
-              src="/logos/logo-colored.png"
+              alt="ppcar logo"
+              src="/logos/logo-colored.svg"
               fill={true}
               objectFit="cover"
             />
           </div>
           <h1 className="visible pt-2 text-[45px] font-bold leading-none text-brandprimary">
-            CARRO
+            PPCar
           </h1>
         </div>
         <h2 className="animate-pulse text-lg font-bold">

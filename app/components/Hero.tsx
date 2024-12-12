@@ -18,7 +18,7 @@ const Hero = () => {
           <div className="bg-greyishbackground h-[450px] w-[375px] rounded-bl-[90px] rounded-br-3xl"></div>
           <div className="relative bottom-20 right-20 h-[200px] w-[540px]">
             <Image
-              alt="carro logo"
+              alt="ppcar logo"
               src="/decorations/highland_hd.png"
               fill={true}
               objectFit="cover"
@@ -36,7 +36,7 @@ export default Hero;
   /* <div className="absolute h-[400px] w-[500px] bg-slate-500"></div>
       <div className="relative h-[250px] w-[600px] ">
         <Image
-          alt="carro logo"
+          alt="ppcar logo"
           src="/decorations/highland_hd.png"
           fill={true}
           objectFit="cover"

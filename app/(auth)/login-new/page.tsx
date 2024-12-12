@@ -16,7 +16,7 @@ const LoginNew = () => {
         <div className="flex h-[600px] rounded-[30px] bg-white max-lg:h-[560px] ">
           <div className="relative w-[400px] max-lg:hidden">
             <Image
-              alt="carro logo"
+              alt="ppcar logo"
               src="/screenshots/phone-with-background-new.png"
               fill={true}
               objectFit="cover"

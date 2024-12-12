@@ -16,14 +16,14 @@ const PaymentNavBar = () => {
         <div className="flex items-center gap-3 justify-center">
           <div className="relative h-14 w-14 md:h-16 md:w-16">
             <Image
-              alt="carro logo"
-              src="/logos/logo-white.png"
+              alt="PPCar logo"
+              src="/logos/logo-white.svg"
               fill={true}
               objectFit="cover"
             />
           </div>
           <h1 className="visible pt-2 text-[35px] font-bold leading-none text-white">
-            CARRO
+            PPCar
           </h1>
         </div>
       </div>

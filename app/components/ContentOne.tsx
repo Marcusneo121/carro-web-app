@@ -4,13 +4,13 @@ const ContentOne = () => {
   return (
     <div className=" mx-20 flex flex-col items-center justify-center max-lg:mx-10">
       <div className="text-bigtextbrandcolor mb-8 mt-10 text-center text-4xl font-bold max-lg:px-10 max-lg:text-2xl">
-        Benefits of CARRO Car Sharing?
+        Benefits of PPCar Sharing?
       </div>
       <div className="bg-greyishbackground flex w-full flex-row items-center justify-around gap-10 rounded-3xl p-10 max-lg:flex-col">
         {/* Image */}
         <div>
           <Image
-            alt="carro logo"
+            alt="ppcar logo"
             src="/decorations/eco-friendly.png"
             width={280}
             height={20}

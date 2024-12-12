@@ -8,20 +8,20 @@ const Footer = () => {
         <div className="flex flex-col gap-5">
           <div className="flex items-center gap-3">
             <Image
-              alt="carro logo"
-              src="/logos/logo-colored.png"
+              alt="ppcar logo"
+              src="/logos/logo-colored.svg"
               width={60}
               height={20}
               objectFit="cover"
             />
             <h1 className="visible pt-2 text-[35px] font-bold leading-none text-brandprimary max-xl:hidden">
-              CARRO
+              PPCar
             </h1>
           </div>
           <p className="max-w-[350px] text-sm">
-            CARRO is a Malaysian trusted peer to peer car sharing platform where
+            PPCar is a Malaysian trusted peer to peer car sharing platform where
             Guests can rent any car that fits the needs and wants for the trips
-            they are going to, from the nearest Hosts in the TREVO community.
+            they are going to, from the nearest Hosts in the PPCar community.
           </p>
         </div>
       </div>

@@ -7,7 +7,7 @@ const ContentTwo = () => {
       <div className="bg-brandprimary flex w-full items-center justify-center rounded-3xl px-12 py-10">
         <div className="flex flex-col gap-10 max-lg:items-center lg:flex-row">
           <Image
-            alt="carro logo"
+            alt="ppcar logo"
             src="/screenshots/desktop.png"
             width={280}
             height={20}
@@ -15,7 +15,7 @@ const ContentTwo = () => {
           />
 
           <div>
-            <div className="text-3xl font-bold text-white">How to CARRO</div>
+            <div className="text-3xl font-bold text-white">How to PPCar</div>
             {/* <div className="mt-4 w-[510px]"> */}
             <div className="mt-4">
               <HomeContentTwoTab />

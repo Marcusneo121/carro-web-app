@@ -8,8 +8,8 @@ import { Toaster } from "react-hot-toast";
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Carro",
-  description: "Carro Login",
+  title: "PPCar",
+  description: "PPCar Login",
 };
 
 export default function Layout({

@@ -19,7 +19,7 @@ const HomeContentTwoTab = () => {
               number={"1"}
               title={"Download the App and Sign Up"}
               description={
-                "Easy and fast verification to get access to the CARRO car sharing community"
+                "Easy and fast verification to get access to the PPCar sharing community"
               }
             />
             <HowToInstructionItem
@@ -50,7 +50,7 @@ const HomeContentTwoTab = () => {
             number={"1"}
             title={"Download the App and Sign Up"}
             description={
-              "Easy and fast verification to get access to the CARRO car sharing community"
+              "Easy and fast verification to get access to the PPCar sharing community"
             }
           />
           <HowToInstructionItem
@@ -65,9 +65,9 @@ const HomeContentTwoTab = () => {
           />
           <HowToInstructionItem
             number={"4"}
-            title={"CARRO safe and have fun!"}
+            title={"PPCar safe and have fun!"}
             description={
-              "Cruise to your dreams in style under CARRO's protetion"
+              "Cruise to your dreams in style under PPCar's protetion"
             }
           />
         </div>

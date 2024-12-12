@@ -9,7 +9,7 @@ import CarNavBar from "../(car)/components/CarNavBar";
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Carro",
+  title: "PPCar",
   description: "My Booking",
 };
 

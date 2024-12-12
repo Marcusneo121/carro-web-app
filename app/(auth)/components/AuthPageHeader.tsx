@@ -8,14 +8,14 @@ const AuthPageHeader = () => {
         <div className="relative h-14 w-14">
           {/* md:h-20 md:w-20 */}
           <Image
-            alt="carro logo"
-            src="/logos/logo-white.png"
+            alt="PPCar logo"
+            src="/logos/logo-white.svg"
             fill={true}
             objectFit="cover"
           />
         </div>
         <h1 className="visible pt-2 text-3xl font-bold leading-none text-white md:text-5xl">
-          CARRO
+          PPCar
         </h1>
       </div>
     </div>

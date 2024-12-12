@@ -49,22 +49,22 @@ const NavBar = () => {
           {/* Logo section */}
           <div className="flex items-center gap-5">
             {/* <Image
-              alt="carro logo"
+              alt="ppcar logo"
               width={75}
               height={75}
-              src="/logos/logo-white.png"
+              src="/logos/logo-white.svg"
               className="min-w-[80px] object-contain"
             /> */}
             <div className="relative h-16 w-16 md:h-20 md:w-20">
               <Image
-                alt="carro logo"
-                src="/logos/logo-white.png"
+                alt="ppcar logo"
+                src="/logos/logo-white.svg"
                 fill={true}
                 objectFit="cover"
               />
             </div>
             <h1 className="visible pt-2 text-[45px] font-bold leading-none text-white max-xl:hidden">
-              CARRO
+              PPCar
             </h1>
           </div>
 

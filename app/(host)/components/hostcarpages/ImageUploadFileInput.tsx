@@ -132,7 +132,7 @@ export default ImageUploadFileInput;
 }
 {
   /* <Image
-              alt="carro logo"
+              alt="ppcar logo"
               src={selectedImage}
               fill={true}
               objectFit="cover"

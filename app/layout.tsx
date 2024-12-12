@@ -10,7 +10,7 @@ import Footer from "@/components/Footer";
 const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata: Metadata = {
-  title: "Carro",
+  title: "PPCar",
   description: "Malaysia's Biggest Car Sharing Marketplace",
 };
 
