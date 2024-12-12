@@ -12,6 +12,9 @@ const fontSans = FontSans({ subsets: ["latin"], variable: "--font-sans" });
 export const metadata: Metadata = {
   title: "PPCar",
   description: "Malaysia's Biggest Car Sharing Marketplace",
+  icons: {
+    icon: "/logo_web.ico",
+  },
 };
 
 export default function RootLayout({
@@ -21,6 +24,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head />
       <body
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
